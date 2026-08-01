@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Remote Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; max-width: 500px; }
+        button { padding: 0.5rem 1rem; cursor: pointer; }
+        #output { margin-top: 1rem; padding: 1rem; background-color: #f0f0f0; border-radius: 4px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <h2>FastAPI Remote Call</h2>
+    <button id="fetchBtn">Call API</button>
+
+    <div id="output">Click the button to fetch data...</div>
+
+    <script>
+        // REPLACE THIS with your actual remote server IP or domain name
+        const API_URL = "http://localhost:8000/Data";
+
+        const button = document.getElementById("fetchBtn");
+        const output = document.getElementById("output");
+
+        button.addEventListener("click", async () => {
+            output.textContent = "Loading...";
+            output.classList.remove("error");
+
+            try {
+                // Perform the asynchronous AJAX call to the remote FastAPI server
+                const response = await fetch(API_URL);
+
+                if (!response.ok) {
+                    throw new Error(`Server returned status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Display the response message from Python
+                output.textContent = JSON.stringify(data, null, 2);
+
+            } catch (error) {
+                output.classList.add("error");
+                output.textContent = `Error connecting to API: ${error.message}`;
+            }
+        });
+    </script>
+
+</body>
+</html>
+
