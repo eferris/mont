@@ -107,24 +107,69 @@ def save_teachers_to_json(teachers, filename="Teacher.JSON"):
     print(f"Failed to write to file '{filename}': {e}")
 
 
+def load_administrators_from_json(filename="Administrator.JSON"):
+  administrators = []
+  Administrator.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for administrator_data in data:
+        # **administrator_data unpacks dictionary keys into the __init__ arguments
+        administrator = Administrator(**administrator_data)
+        administrators.append(administrator)
+
+    return administrators
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+def save_administrators_to_json(administrators, filename="Administrator.JSON"):
+  """Saves a single Administrator object or a list of Administrator objects to a JSON file."""
+  # Ensure input is formatted as a list
+  if isinstance(administrators, Administrator):
+    administrators = [administrators]
+
+  # Convert each Administrator object into a dictionary of its attributes
+  administrators_data = [vars(administrator) for administrator in administrators]
+
+  try:
+    with open(filename, "w", encoding="utf-8") as file:
+      # indent=4 formats the output with pretty-printing for readability
+      json.dump(administrators_data, file, indent=4)
+    print(
+        f"Successfully saved {len(administrators)} administrator record(s) to '{filename}'."
+    )
+  except IOError as e:
+    print(f"Failed to write to file '{filename}': {e}")
+
+
 
 # --- Usage Example ---
 if __name__ == "__main__":
-  teacher_list = load_teachers_from_json("Teacher.JSON")
+  administrator_list = load_administrators_from_json("Administrator.JSON")
 
-  for s in Teacher._registry:
-    print(f"Loaded Teacher: {s.first_name} {s.last_name}")
+  for s in Administrator._registry:
+    print(f"Loaded Administrator: {s.first_name} {s.last_name}")
 
-Teacher(
+Administrator(
     "7890",
     "John",
     "Doe"
 )
 
-
-for s in Teacher._registry:
-  print(f"Loaded Teacher: {s.first_name} {s.last_name}")
+for s in Administrator._registry:
+  print(f"Loaded Administrator: {s.first_name} {s.last_name}")
 
   # 2. Write the student object to Student.JSON
-save_teachers_to_json(Teacher._registry, "Teacher.JSON")
+save_administrators_to_json(Administrator._registry, "Administrator.JSON")
 
