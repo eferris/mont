@@ -178,51 +178,7 @@ class Prerequisite:
 
     def __del__(self):
         print("Prerequisite object destroyed")
-
-class Administrator:
-
-    _registry = []
-
-    def __init__(self, admin_id=None, first_name=None, last_name=None, email=None, phone_number=None):
-        self.admin_id = admin_id
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.phone_number = phone_number
-
-    # Register this instance
-        Administrator._registry.append(self)
-
-    @classmethod
-    def get_all_instances(cls):
-        """Returns all tracked instances."""
-        return cls._registry
-
-    def __del__(self):
-        print("Administrator object destroyed")
-
-class Teacher:
-
-    _registry = []
-
-    def __init__(self, teacher_id=None, first_name=None, last_name=None, email=None, phone_number=None):
-        self.teacher_id = teacher_id
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.phone_number = phone_number
-
-    # Register this instance
-        Teacher._registry.append(self)
-
-    @classmethod
-    def get_all_instances(cls):
-        """Returns all tracked instances."""
-        return cls._registry
-
-    def __del__(self):
-        print("Teacher object destroyed")
-
+        
 class Student:
 
     _registry = []
