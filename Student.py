@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
 
   # 1. Create a sample student
-  student1 = Student(
+  Student(
       student_id="S102",
       first_name="Bob",
       last_name="Johnson",
