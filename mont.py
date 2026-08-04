@@ -35,6 +35,12 @@ class Report:
         """Returns all tracked instances."""
         return cls._registry
 
+    @classmethod
+    def delete_all_instances(cls):
+        """Deletes all tracked instances."""
+        cls._registry.clear()
+
+
     def __del__(self):
         print("Report object destroyed")
 
@@ -56,6 +62,12 @@ class Poster:
         """Returns all tracked instances."""
         return cls._registry
 
+    @classmethod
+    def delete_all_instances(cls):
+        """Deletes all tracked instances."""
+        cls._registry.clear()
+
+
     def __del__(self):
         print("Poster object destroyed")
 
@@ -76,6 +88,11 @@ class Curriculum:
     def get_all_instances(cls):
         """Returns all tracked instances."""
         return cls._registry
+
+    @classmethod
+    def delete_all_instances(cls):
+        """Deletes all tracked instances."""
+        cls._registry.clear()
 
     def __del__(self):
         print("Curriculum object destroyed")
@@ -142,31 +159,6 @@ class Page:
 
     def __del__(self):
         print("Page object destroyed")
-
-class Lesson:
-
-    _registry = []
-
-    def __init__(self, lesson_id=None, page_id=None, student_id_list=None, title=None, description=None, date=None, time=None):
-        self.lesson_id = lesson_id
-        self.page_id = page_id
-        self.student_id_list = student_id_list
-        self.title = title
-        self.description = description
-        self.date = date
-        self.time = time
-
-    # Register this instance
-        Lesson._registry.append(self)
-
-    @classmethod
-    def get_all_instances(cls):
-        """Returns all tracked instances."""
-        return cls._registry
-
-    def __del__(self):
-        print("Lesson object destroyed")
-
 class Prerequisite:
 
     _registry = []
