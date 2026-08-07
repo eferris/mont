@@ -123,7 +123,7 @@ def load_administrators_from_json(filename="Administrator.JSON"):
         administrator = Administrator(**administrator_data)
         administrators.append(administrator)
 
-    return administrators
+      return administrators
 
   except FileNotFoundError:
     print(f"Error: The file '{filename}' was not found.")
@@ -151,25 +151,4 @@ def save_administrators_to_json(administrators, filename="Administrator.JSON"):
     )
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
-
-
-
-# --- Usage Example ---
-if __name__ == "__main__":
-  administrator_list = load_administrators_from_json("Administrator.JSON")
-
-  for s in Administrator._registry:
-    print(f"Loaded Administrator: {s.first_name} {s.last_name}")
-
-Administrator(
-    "7890",
-    "John",
-    "Doe"
-)
-
-for s in Administrator._registry:
-  print(f"Loaded Administrator: {s.first_name} {s.last_name}")
-
-  # 2. Write the student object to Student.JSON
-save_administrators_to_json(Administrator._registry, "Administrator.JSON")
 
