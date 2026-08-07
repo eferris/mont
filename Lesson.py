@@ -4,10 +4,11 @@ class Lesson:
 
     _registry = []
 
-    def __init__(self, lesson_id=None, page_id=None, lesson_id_list=None, title=None, description=None, date=None, time=None, review_date=None):
+    def __init__(self, lesson_id=None, page_id=None, lesson_id_list=None, admin_id=None, title=None, description=None, date=None, time=None, review_date=None):
         self.lesson_id = lesson_id
         self.page_id = page_id
         self.lesson_id_list = lesson_id_list
+        self.admin_id = admin_id
         self.title = title
         self.description = description
         self.date = date
