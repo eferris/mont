@@ -1,0 +1,16 @@
+[
+    {
+        "admin_id": "7890",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "John@bell.net",
+        "phone_number": null
+    },
+    {
+        "admin_id": "1432",
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "email": "Jane@google.us",
+        "phone_number": null
+    }
+]

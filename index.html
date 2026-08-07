@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="mont.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastAPI Remote Test</title>
@@ -13,17 +14,28 @@
 </head>
 <body>
 
+
     <h2>FastAPI Remote Call</h2>
     <button id="fetchBtn">Call API</button>
 
     <div id="output">Click the button to fetch data...</div>
-
+  
+    <!-- Container where the select element will be placed -->
+    <div id="select-div"></div>
+  
     <script>
-        // REPLACE THIS with your actual remote server IP or domain name
-        const API_URL = "http://localhost:8000/Data";
 
+        let itemList = 0;      
         const button = document.getElementById("fetchBtn");
         const output = document.getElementById("output");
+ 
+        // 1. Data source for options
+        const optionsData = [
+         { value: '', text: '-- Select an Option --' }
+        ];
+
+        // REPLACE THIS with your actual remote server IP or domain name
+        const API_URL = "http://localhost:8000/Data";
 
         button.addEventListener("click", async () => {
             output.textContent = "Loading...";
@@ -38,15 +50,43 @@
                 }
 
                 const data = await response.json();
-                
-                // Display the response message from Python
-                output.textContent = JSON.stringify(data, null, 2);
+
+                // Step 1: Unwrap the outer JSON string
+                const decodedString = JSON.parse(data);
+
+                // Step 2: Parse the resulting string into a real JavaScript Array
+
+                count = decodedString.length;
+                // output.textContent = `Fetched ${count} Administrators.`;
+
+                const selectContainer = document.createElement('select');
+                selectContainer.id = 'select-container';
+
+                // Step 3: Iterate through the elements cleanly
+                for (const item of decodedString) {
+                  // console.log(item);
+
+
+                  optionsData.push({ value: item, text: item });
+
+                  const option = document.createElement('option');
+                  option.value = item;
+                  option.text = item;
+
+                  // 5. Append the <select> element to the DOM
+                  byId = document.getElementById('select-container');
+                  selectContainer.appendChild(option);
+                }
+
+                document.body.appendChild(selectContainer);
 
             } catch (error) {
                 output.classList.add("error");
                 output.textContent = `Error connecting to API: ${error.message}`;
             }
         });
+
+
     </script>
 
 </body>

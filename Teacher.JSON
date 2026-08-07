@@ -1,0 +1,30 @@
+[
+    {
+        "teacher_id": "142",
+        "first_name": "jackie",
+        "last_name": "Blue",
+        "email": null,
+        "phone_number": null
+    },
+    {
+        "teacher_id": "143",
+        "first_name": "Doe",
+        "last_name": "Adeere",
+        "email": null,
+        "phone_number": null
+    },
+    {
+        "teacher_id": "89",
+        "first_name": "Elon",
+        "last_name": "Limp",
+        "email": null,
+        "phone_number": null
+    },
+    {
+        "teacher_id": "7890",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": null,
+        "phone_number": null
+    }
+]
