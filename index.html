@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="mont.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastAPI Remote Test</title>
+    <title>Montessori Sign In</title>
     <style>
         body { font-family: sans-serif; padding: 2rem; max-width: 500px; }
         button { padding: 0.5rem 1rem; cursor: pointer; }
@@ -15,10 +15,10 @@
 <body>
 
 
-    <h2>FastAPI Remote Call</h2>
-    <button id="fetchBtn">Call API</button>
+    <h2>Montessori Sign In</h2>
+    <button id="fetchBtn">Refresh List</button>
 
-    <div id="output">Click the button to fetch data...</div>
+    <div id="output">Click the button to Refresh</div>
   
     <!-- Container where the select element will be placed -->
     <div id="select-div"></div>
@@ -26,8 +26,8 @@
     <script>
 
         let itemList = 0;      
-        const button = document.getElementById("fetchBtn");
         const output = document.getElementById("output");
+        const button = document.getElementById("fetchBtn");
  
         // 1. Data source for options
         const optionsData = [
@@ -35,15 +35,16 @@
         ];
 
         // REPLACE THIS with your actual remote server IP or domain name
-        const API_URL = "http://localhost:8000/Data";
+        const DATA_URL = "http://localhost:8000/Data";
+        const SIGNIN_URL = "http://localhost:8000/SignIn";
 
         button.addEventListener("click", async () => {
-            output.textContent = "Loading...";
+            output.textContent = "Select from the list and enter corresponding email...";
             output.classList.remove("error");
 
             try {
                 // Perform the asynchronous AJAX call to the remote FastAPI server
-                const response = await fetch(API_URL);
+                const response = await fetch(DATA_URL);
 
                 if (!response.ok) {
                     throw new Error(`Server returned status: ${response.status}`);
@@ -62,6 +63,15 @@
                 const selectContainer = document.createElement('select');
                 selectContainer.id = 'select-container';
 
+                optionsData.push({  value: '', text: '-- Select an Option --' });
+
+                const option = document.createElement('option');
+                option.value = '';
+                option.text = '-- Select an Option --';
+
+                // Append the default option to the element
+                selectContainer.appendChild(option);
+
                 // Step 3: Iterate through the elements cleanly
                 for (const item of decodedString) {
                   // console.log(item);
@@ -74,12 +84,49 @@
                   option.text = item;
 
                   // 5. Append the <select> element to the DOM
-                  byId = document.getElementById('select-container');
                   selectContainer.appendChild(option);
                 }
+                const container = document.getElementById('select-div');
+                container.innerHTML = ''; // Clear previous content
+                container.appendChild(selectContainer);
+                selectContainer.addEventListener('change', (event) => {
+                    const selectedValue = event.target.value;
+                    if (selectedValue === '') {
+                        output.textContent = "Please select a valid option.";
+                        return;
+                    }
+                    output.textContent = `You selected: ${selectedValue}.  Enter email and Sign In`;
+                    // Get email and send to server for validation
 
-                document.body.appendChild(selectContainer);
+                    // Data to send for validation
+                    const payload = {
+                      selectedRole: selectedValue,
+                    };
 
+                    // Execute the HTTP POST request
+                    fetch(SIGNIN_URL, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json' // Essential: tells FastAPI to parse body as JSON
+                      },
+                      body: JSON.stringify(payload)
+                    })
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                      })
+                      .then(data => {
+                        console.log('Validation result from server:', data);
+                      })
+                      .catch(error => {
+                        console.error('Validation request failed:', error);
+                      });
+
+
+                });
+                button.textContent = "Sign In";
             } catch (error) {
                 output.classList.add("error");
                 output.textContent = `Error connecting to API: ${error.message}`;
@@ -88,6 +135,9 @@
 
 
     </script>
+
+    <label for="email">Enter corresponding email:</label>
+    <input type="email" id="email" pattern=".+@example\.com" size="30" required />
 
 </body>
 </html>
