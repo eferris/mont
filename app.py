@@ -31,8 +31,13 @@ def read_data():
         for obj in Administrator._registry])
 
     return json_data
-
-
 #     return {"message": "Hello from the remote FastAPI server!"}
+
+    
+@app.post("/SignIn")
+async def sign_in():
+    # validate the email against the admin table
+     return {"message": "valid"}
+
 
 
