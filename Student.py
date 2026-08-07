@@ -12,6 +12,7 @@ class Student:
       last_name=None,
       email=None,
       phone_number=None,
+      admin_id=None,
       math_lesson_id_list=None,
       biology_lesson_id_list=None,
       music_lesson_id_list=None,
@@ -27,7 +28,7 @@ class Student:
     self.last_name = last_name
     self.email = email
     self.phone_number = phone_number
-
+    self.admin_id = admin_id
     # Ensure defaults fallback to lists if None is passed
     self.math_lesson_id_list = (
         math_lesson_id_list if math_lesson_id_list is not None else []
@@ -81,8 +82,6 @@ class Student:
 
 
 
-
-
 def load_students_from_json(filename="Student.JSON"):
   students = []
   Student.delete_all_instances();
@@ -111,8 +110,6 @@ def load_students_from_json(filename="Student.JSON"):
 
 
 
-
-
 def save_students_to_json(students, filename="Student.JSON"):
   """Saves a single Student object or a list of Student objects to a JSON file."""
   # Ensure input is formatted as a list
@@ -131,50 +128,3 @@ def save_students_to_json(students, filename="Student.JSON"):
     )
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
-
-
-
-# --- Usage Example ---
-if __name__ == "__main__":
-  student_list = load_students_from_json("Student.JSON")
-
-  for s in Student._registry:
-    print(f"Loaded Student: {s.first_name} {s.last_name} (ID: {s.student_id})")
-    print(f"  Math Lessons: {s.math_lesson_id_list}")
-
-    print(f"  Language Lessons: {s.Language_lesson_id_list}")
-
-
-  # 1. Create a sample student
-  Student(
-      student_id="S102",
-      first_name="Bob",
-      last_name="Johnson",
-      email="bob@example.com",
-      phone_number="555-0200",
-      math_lesson_id_list=[101, 103],
-      Language_lesson_id_list=[301],
-      geography_lesson_id_list=[502],
-  )
-
-
-  for s in Student._registry:
-    print(f"Added Student: {s.first_name} {s.last_name} (ID: {s.student_id})")
-    print(f"  Math Lessons: {s.math_lesson_id_list}")
-
-    print(f"  Language Lessons: {s.Language_lesson_id_list}")
-
-
-
-  # 2. Write the student object to Student.JSON
-  save_students_to_json(Student._registry, "Student.JSON")
-
-  student_list = load_students_from_json("Student.JSON")
-
-  for s in Student._registry:
-    print(f"Loaded Student: {s.first_name} {s.last_name} (ID: {s.student_id})")
-    print(f"  Math Lessons: {s.math_lesson_id_list}")
-
-    print(f"  Language Lessons: {s.Language_lesson_id_list}")
-
-
