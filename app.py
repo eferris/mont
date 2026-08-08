@@ -1,17 +1,14 @@
 import json
+from mont import ValidationRequest
 from Teacher import Administrator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from Teacher import load_administrators_from_json
+from Teacher import get_admin_by_email
+
+#from pydantic import BaseModel
 
 app = FastAPI()
-
-# Allow requests from your remote frontend domain(s)
-origins = [
-    "https://redhairedlion.com",
-    "http://127.0.0.1:8080",  # For local testing
-    "http://localhost:8080",  # For local testing
-]
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,9 +32,9 @@ def read_data():
 
     
 @app.post("/SignIn")
-async def sign_in():
+async def sign_in(ValidationRequest: ValidationRequest):
     # validate the email against the admin table
-     return {"message": "valid"}
+    return {"message": get_admin_by_email(ValidationRequest)}
 
 
 

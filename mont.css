@@ -36,3 +36,21 @@
   margin-bottom: -20px;
   cursor: pointer;
 }
+
+.btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+}
+
+    /* Greyed-out, disabled state */
+.btn:disabled {
+      background-color: #d6d6d6;
+      color: #888888;
+      cursor: not-allowed;
+      opacity: 0.7;
+}

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <link rel="stylesheet" type="text/css" href="mont.css">
+    <link rel="dummy icon" type="image/x-icon" href="data:,">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montessori Sign In</title>
@@ -16,22 +19,30 @@
 
 
     <h2>Montessori Sign In</h2>
-    <button id="fetchBtn">Refresh List</button>
 
-    <div id="output">Click the button to Refresh</div>
-  
+    <label for="email">Enter account email. Then choose your account:</label>
+    <input type="email" id="email" pattern=".+@example\.com" size="30" required />
+
+    <button id="fetchBtn" type="button" class="btn" style="margin: 15px;">Refresh List</button>
+    
+    <div id="output"></div>
+<!--    <div id="output">Click the button to Refresh and choose your account</div> -->
+   
     <!-- Container where the select element will be placed -->
     <div id="select-div"></div>
   
     <script>
 
-        let itemList = 0;      
+        let itemList = 0;  
+        let selectedValue = '';    
         const output = document.getElementById("output");
         const button = document.getElementById("fetchBtn");
- 
+
+        const PROMPT = "-- Select an Option --";
+        
         // 1. Data source for options
         const optionsData = [
-         { value: '', text: '-- Select an Option --' }
+         { value: '', text: PROMPT }
         ];
 
         // REPLACE THIS with your actual remote server IP or domain name
@@ -39,14 +50,26 @@
         const SIGNIN_URL = "http://localhost:8000/SignIn";
 
         button.addEventListener("click", async () => {
-            output.textContent = "Select from the list and enter corresponding email...";
+<!--            output.textContent = "Select from the list and enter corresponding email...";
             output.classList.remove("error");
+-->
+
+            const inputEl = document.getElementById('email');            
+            const textValue = inputEl.value.trim();
+            // 2. Check if the string is empty
+            if (textValue === '') {
+               output.textContent = `email is missing`;
+               return;
+            }
 
             try {
+
+                output.textContent = "";
                 // Perform the asynchronous AJAX call to the remote FastAPI server
                 const response = await fetch(DATA_URL);
 
                 if (!response.ok) {
+                output.textContent = "Server returned status: ${response.status}";                  
                     throw new Error(`Server returned status: ${response.status}`);
                 }
 
@@ -90,17 +113,26 @@
                 container.innerHTML = ''; // Clear previous content
                 container.appendChild(selectContainer);
                 selectContainer.addEventListener('change', (event) => {
-                    const selectedValue = event.target.value;
-                    if (selectedValue === '') {
+                    selectedValue = event.target.value;
+                    if (selectedValue === PROMPT ) {
                         output.textContent = "Please select a valid option.";
                         return;
                     }
-                    output.textContent = `You selected: ${selectedValue}.  Enter email and Sign In`;
-                    // Get email and send to server for validation
+
+                    const inputEl = document.getElementById('email');
+                    const textValue = inputEl.value.trim();
+                    // 2. Check if the string is empty
+                    if (textValue === '') {
+                      output.textContent = `You selected: ${selectedValue} but email is missing`;
+                    } else 
+                    {
+                      output.textContent = `Validating System for: ${selectedValue}  and  ${textValue}`;
+                    }                 
 
                     // Data to send for validation
-                    const payload = {
+                    const verificationRequest = {
                       selectedRole: selectedValue,
+                      textEmail: textValue
                     };
 
                     // Execute the HTTP POST request
@@ -109,7 +141,7 @@
                       headers: {
                         'Content-Type': 'application/json' // Essential: tells FastAPI to parse body as JSON
                       },
-                      body: JSON.stringify(payload)
+                      body: JSON.stringify(verificationRequest) // Convert JS object to JSON string
                     })
                       .then(response => {
                         if (!response.ok) {
@@ -118,15 +150,28 @@
                         return response.json();
                       })
                       .then(data => {
-                        console.log('Validation result from server:', data);
-                      })
+
+
+                        if ( data.message === null){
+                          output.textContent = `Email  ${textValue} not found`;
+                        }  else
+                        if ( data.message.admin_id ==  verificationRequest.selectedRole) {
+                          output.textContent = `Found email: ${textValue} and account: ${selectedValue}`;
+                        }
+                    })
                       .catch(error => {
+                        output.textContent = `Internal Error.    Email  ${textValue} not found`;
                         console.error('Validation request failed:', error);
                       });
 
 
                 });
-                button.textContent = "Sign In";
+                if ((textValue != '') && (selectedValue === '')) {
+                      output.textContent = `Choose Account for email: ${textValue}.`;
+                      button.disable = true;
+                }
+                button.textContent = "Select Account Below";
+
             } catch (error) {
                 output.classList.add("error");
                 output.textContent = `Error connecting to API: ${error.message}`;
@@ -135,9 +180,6 @@
 
 
     </script>
-
-    <label for="email">Enter corresponding email:</label>
-    <input type="email" id="email" pattern=".+@example\.com" size="30" required />
 
 </body>
 </html>

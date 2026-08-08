@@ -1,8 +1,10 @@
 
 import json
+#from pydantic import BaseModel
+# from mont import ValidationRequest
 
 
-class Administrator:
+class Administrator():
 
     _registry = []
 
@@ -26,10 +28,10 @@ class Administrator:
         """Deletes all tracked instances."""
         cls._registry.clear()
 
-
-
+    @classmethod  
     def __del__(self):
         print("Administrator object destroyed")
+
 
 class Teacher:
 
@@ -153,3 +155,8 @@ def save_administrators_to_json(administrators, filename="Administrator.JSON"):
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
 
+def get_admin_by_email(ValidationRequest):
+    for admin in Administrator._registry:
+        if admin.email == ValidationRequest.textEmail and admin.admin_id == ValidationRequest.selectedRole:
+            return admin
+    return None
