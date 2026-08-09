@@ -1,0 +1,16 @@
+[
+  {
+    "page_id": 1,
+    "prerequisite_id": null,
+    "material_id": 101,
+    "title": "Introduction to Page Concepts",
+    "content": "This is the initial content for page one."
+  },
+  {
+    "page_id": 2,
+    "prerequisite_id": 1,
+    "material_id": 101,
+    "title": "Advanced Page Application",
+    "content": "This is the follow-up content for page two."
+  }
+]
