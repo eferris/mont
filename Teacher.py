@@ -1,7 +1,7 @@
 
 import json
-#from pydantic import BaseModel
-# from mont import ValidationRequest
+from mont import thisAccount
+from mont import HttpRequest
 
 
 class Administrator():
@@ -155,8 +155,9 @@ def save_administrators_to_json(administrators, filename="Administrator.JSON"):
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
 
-def get_admin_by_email(ValidationRequest):
+def get_admin_by_email(HttpRequest):
     for admin in Administrator._registry:
-        if admin.email == ValidationRequest.textEmail and admin.admin_id == ValidationRequest.selectedRole:
+        if admin.email == HttpRequest.textEmail and admin.admin_id == HttpRequest.selectedRole:
+            thisAccount = HttpRequest.selectedRole
             return admin
     return None

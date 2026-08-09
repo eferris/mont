@@ -1,5 +1,8 @@
 import json
-from mont import ValidationRequest
+from mont import load_curriculum_from_json
+from mont import load_page_from_json
+
+from mont import HttpRequest
 from Teacher import Administrator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,9 +35,19 @@ def read_data():
 
     
 @app.post("/SignIn")
-async def sign_in(ValidationRequest: ValidationRequest):
+async def sign_in(HttpRequest: HttpRequest):
     # validate the email against the admin table
-    return {"message": get_admin_by_email(ValidationRequest)}
+    return {"message": get_admin_by_email(HttpRequest)}
 
 
 
+@app.get("/Curriculum")
+def read_curriculum():
+    load_curriculum_from_json(HttpRequest)
+    return
+
+
+@app.get("/Page")
+def read_page():
+    load_page_from_json(HttpRequest)
+    return

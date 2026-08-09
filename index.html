@@ -14,6 +14,7 @@
         #output { margin-top: 1rem; padding: 1rem; background-color: #f0f0f0; border-radius: 4px; }
         .error { color: red; }
     </style>
+    
 </head>
 <body>
 
@@ -48,11 +49,19 @@
         // REPLACE THIS with your actual remote server IP or domain name
         const DATA_URL = "http://localhost:8000/Data";
         const SIGNIN_URL = "http://localhost:8000/SignIn";
+        const CURRICULUM_URL = "http://localhost:8000/Curriculum";
+        const PAGE_URL = "http://localhost:8000/Page";
+        const SUBJECT_URL = "http://localhost:8000/Subject";
+        const PREREQUISITE_URL = "http://localhost:8000/Prerequisite";
+        const REPORT_URL = "http://localhost:8000/Report";
+        const POSTER_URL = "http://localhost:8000/Poster";
+        const MATERIAL_URL = "http://localhost:8000/Material";
+        const STUDENT_URL = "http://localhost:8000/Student";
+        const LESSON_URL = "http://localhost:8000/Lesson";
+        const TEACHER_URL = "http://localhost:8000/Teacher";
+
 
         button.addEventListener("click", async () => {
-<!--            output.textContent = "Select from the list and enter corresponding email...";
-            output.classList.remove("error");
--->
 
             const inputEl = document.getElementById('email');            
             const textValue = inputEl.value.trim();
@@ -152,11 +161,14 @@
                       .then(data => {
 
 
-                        if ( data.message === null){
+                        if ( data.message  === null){
                           output.textContent = `Email  ${textValue} not found`;
                         }  else
+
                         if ( data.message.admin_id ==  verificationRequest.selectedRole) {
                           output.textContent = `Found email: ${textValue} and account: ${selectedValue}`;
+                          loadTeacherDashboardData();  // Call the function to load dashboard data
+
                         }
                     })
                       .catch(error => {
@@ -178,6 +190,40 @@
             }
         });
 
+
+async function requestIt( url, options={})
+{
+    const answer = await fetch( url, options );
+    if (!answer.ok) {
+      throw new Error('HTTP Error status: ${answer.status}');
+    }        
+    return await answer.json
+}
+
+async function loadTeacherDashboardData() {
+    try {
+        // Fetches concurrently instead of waiting for each one sequentially
+       let status = await Promise.all( [requestIt(CURRICULUM_URL),requestIt(PAGE_URL)]);
+         
+        renderTeacherDashboardData(status);
+
+    } catch (error) {
+        handleGlobalError(error);
+    }
+}
+
+async function renderTeacherDashboardData() {
+  // Update the UI with Teacher select element and resulting Teacher Dashboard 
+  return
+}
+
+function handleGlobalError(error) {
+    // 1. Log details to terminal/console for debugging
+    console.error("[Global Error Caught]:", error);
+
+    // 2. Display a user-friendly UI message (e.g., a toast notification or banner)
+    output.textContent = `GlobalErrorHandler: ${error.message}`;
+}
 
     </script>
 
