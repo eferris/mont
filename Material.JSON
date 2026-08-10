@@ -1,0 +1,102 @@
+[
+  {
+    "material_id": 1,
+    "name": "Textbook - Volume 1",
+    "description": "Learning material for textbook covering key course concepts."
+  },
+  {
+    "material_id": 2,
+    "name": "Lab Workbook - Volume 2",
+    "description": "Learning material for lab workbook covering key course concepts."
+  },
+  {
+    "material_id": 3,
+    "name": "Study Guide - Volume 3",
+    "description": "Learning material for study guide covering key course concepts."
+  },
+  {
+    "material_id": 4,
+    "name": "Flashcards - Volume 4",
+    "description": "Learning material for flashcards covering key course concepts."
+  },
+  {
+    "material_id": 5,
+    "name": "Lecture Slides - Volume 5",
+    "description": "Learning material for lecture slides covering key course concepts."
+  },
+  {
+    "material_id": 6,
+    "name": "Practice Exam - Volume 6",
+    "description": "Learning material for practice exam covering key course concepts."
+  },
+  {
+    "material_id": 7,
+    "name": "Video Tutorial - Volume 7",
+    "description": "Learning material for video tutorial covering key course concepts."
+  },
+  {
+    "material_id": 8,
+    "name": "Interactive Quiz - Volume 8",
+    "description": "Learning material for interactive quiz covering key course concepts."
+  },
+  {
+    "material_id": 9,
+    "name": "Reference Sheet - Volume 9",
+    "description": "Learning material for reference sheet covering key course concepts."
+  },
+  {
+    "material_id": 10,
+    "name": "Audio Lecture - Volume 10",
+    "description": "Learning material for audio lecture covering key course concepts."
+  },
+  {
+    "material_id": 11,
+    "name": "Assignment Sheet - Volume 11",
+    "description": "Learning material for assignment sheet covering key course concepts."
+  },
+  {
+    "material_id": 12,
+    "name": "Diagram Sheet - Volume 12",
+    "description": "Learning material for diagram sheet covering key course concepts."
+  },
+  {
+    "material_id": 13,
+    "name": "Cheat Sheet - Volume 13",
+    "description": "Learning material for cheat sheet covering key course concepts."
+  },
+  {
+    "material_id": 14,
+    "name": "Syllabus - Volume 14",
+    "description": "Learning material for syllabus covering key course concepts."
+  },
+  {
+    "material_id": 15,
+    "name": "Case Study - Volume 15",
+    "description": "Learning material for case study covering key course concepts."
+  },
+  {
+    "material_id": 16,
+    "name": "Whitepaper - Volume 16",
+    "description": "Learning material for whitepaper covering key course concepts."
+  },
+  {
+    "material_id": 17,
+    "name": "Research Article - Volume 17",
+    "description": "Learning material for research article covering key course concepts."
+  },
+  {
+    "material_id": 18,
+    "name": "Workbook Supplement - Volume 18",
+    "description": "Learning material for workbook supplement covering key course concepts."
+  },
+  {
+    "material_id": 19,
+    "name": "Discussion Guide - Volume 19",
+    "description": "Learning material for discussion guide covering key course concepts."
+  },
+  {
+    "material_id": 20,
+    "name": "Formula Sheet - Volume 20",
+    "description": "Learning material for formula sheet covering key course concepts."
+  }
+]

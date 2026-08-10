@@ -30,10 +30,10 @@ class Lesson:
 
 
     def __del__(self):
-        print(f"Lesson object destroyed for {self.lesson_id}")
+        return
 
 
-def load_lessons_from_json(filename="Lesson.JSON"):
+def load_lesson_from_json(HttpRequest, filename="Lesson.JSON"):
   lessons = []
   Lesson.delete_all_instances();
   try:
@@ -80,29 +80,4 @@ def save_lessons_to_json(lessons, filename="Lesson.JSON"):
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
 
-
-
-# --- Usage Example ---
-if __name__ == "__main__":
-  lesson_list = load_lessons_from_json("Lesson.JSON")
-
-  for s in Lesson._registry:
-    print(f"Loaded Lesson: {s.title} {s.description}")
-
-  Lesson(
-    "GEO-101",
-    "PG-006",
-    ["GEO-099","MATH-100"],      
-    "Introduction to Life Basics",
-    "Learn the fundamentals of functional Living.",
-    "2026-09-01",
-    "09:00:00",
-    "2026-09-01"
-  )
-
-  for s in Lesson._registry:
-    print(f"Loaded Lesson: {s.title} {s.description}")
-
-  # 2. Write the student object to Student.JSON
-  save_lessons_to_json(Lesson._registry, "Lesson.JSON")
 

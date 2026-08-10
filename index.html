@@ -197,22 +197,49 @@ async function requestIt( url, options={})
     if (!answer.ok) {
       throw new Error('HTTP Error status: ${answer.status}');
     }        
-    return await answer.json
+    return await answer.json()
 }
 
 async function loadTeacherDashboardData() {
     try {
         // Fetches concurrently instead of waiting for each one sequentially
-       let status = await Promise.all( [requestIt(CURRICULUM_URL),requestIt(PAGE_URL)]);
-         
-        renderTeacherDashboardData(status);
+       let status=[resCurr,resSubj,resPrer,resMat,resPost,resPag,resLess,resStud,resTeach] 
+        = await Promise.all
+       ( 
+        [requestIt(CURRICULUM_URL),
+        requestIt(SUBJECT_URL),
+        requestIt(PREREQUISITE_URL),
+        requestIt(MATERIAL_URL),
+        requestIt(POSTER_URL),
+        requestIt(PAGE_URL),
+        requestIt(LESSON_URL),
+        requestIt(STUDENT_URL),
+        requestIt(TEACHER_URL)]
+       );
+      renderTeacherDashboardData(
+              resCurr,resSubj,resPrer,
+              resMat,resPost,resPag,
+              resLess,resStud,resTeach);
 
     } catch (error) {
         handleGlobalError(error);
     }
 }
 
-async function renderTeacherDashboardData() {
+async function renderTeacherDashboardData(
+  resCurr,resSubj,resPrer,
+  resMat,resPost,resPag,
+  resLess,resStud,resTeach) {
+  console.log(resCurr)
+  console.log(resSubj)
+  console.log(resPrer)
+  console.log(resMat)
+  console.log(resPost)
+  console.log(resPag)
+  console.log(resLess)
+  console.log(resStud)
+  console.log(resTeach)
+
   // Update the UI with Teacher select element and resulting Teacher Dashboard 
   return
 }

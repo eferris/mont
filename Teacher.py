@@ -30,7 +30,7 @@ class Administrator():
 
     @classmethod  
     def __del__(self):
-        print("Administrator object destroyed")
+        return
 
 
 class Teacher:
@@ -59,7 +59,7 @@ class Teacher:
         cls._registry.clear()
 
     def __del__(self):
-        print("Teacher object destroyed")
+        return
 
 
 def load_teachers_from_json(filename="Teacher.JSON"):
@@ -78,7 +78,9 @@ def load_teachers_from_json(filename="Teacher.JSON"):
         teacher = Teacher(**teacher_data)
         teachers.append(teacher)
 
-    return teachers
+      teacher_data = [vars(teach) for teach in Teacher._registry]
+
+    return teacher_data
 
   except FileNotFoundError:
     print(f"Error: The file '{filename}' was not found.")
@@ -161,3 +163,56 @@ def get_admin_by_email(HttpRequest):
             thisAccount = HttpRequest.selectedRole
             return admin
     return None
+
+
+def load_teacher_from_json(HttpRequest, filename="Teacher.JSON"):
+  teachers = []
+  Teacher.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for teacher_data in data:
+        # **teacher_data unpacks dictionary keys into the __init__ arguments
+        teacher = Teacher(**teacher_data)
+        teachers.append(teacher)
+
+    return teachers
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+def load_administrator_from_json(HttpRequest, filename="Administrator.JSON"):
+  administrators = []
+  Administrator.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for administrator_data in data:
+        # **administrator_data unpacks dictionary keys into the __init__ arguments
+        administrator = Administrator(**administrator_data)
+        administrators.append(administrator)
+
+    return administrators
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+

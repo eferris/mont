@@ -55,7 +55,7 @@ class Report:
 
 
     def __del__(self):
-        print("Report object destroyed")
+        return
 
 class Poster:
 
@@ -80,9 +80,9 @@ class Poster:
         """Deletes all tracked instances."""
         cls._registry.clear()
 
-
     def __del__(self):
-        print("Poster object destroyed")
+        return
+
 
 class Curriculum:
 
@@ -108,7 +108,7 @@ class Curriculum:
         cls._registry.clear()
 
     def __del__(self):
-        print("Curriculum object destroyed")
+        return
 
 class Subject:
 
@@ -134,7 +134,7 @@ class Subject:
         cls._registry.clear()
    
     def __del__(self):
-        print("Subject object destroyed")
+        return
 
 class Material:
 
@@ -146,7 +146,7 @@ class Material:
         self.description = description
 
     # Register this instance
-        Material._registry.append(self)
+        Material._registry.append(self) 
 
     @classmethod
     def get_all_instances(cls):
@@ -159,7 +159,7 @@ class Material:
         cls._registry.clear()
 
     def __del__(self):
-        print("Material object destroyed")
+        return
 
 class Page:
 
@@ -186,7 +186,7 @@ class Page:
         cls._registry.clear()
 
     def __del__(self):
-        print("Page object destroyed")
+        return
 
 
 class Prerequisite:
@@ -212,7 +212,7 @@ class Prerequisite:
         cls._registry.clear()
 
     def __del__(self):
-        print("Prerequisite object destroyed")
+        return
         
 
 
@@ -253,7 +253,9 @@ def load_curriculum_from_json(HttpRequest, filename="Curriculum.JSON"):
         curriculum = Curriculum(**curriculum_data)
         curriculums.append(curriculum)
 
-    return curriculums
+      curriculum_data = [vars(curr) for curr in Curriculum._registry]
+
+    return curriculum_data
 
   except FileNotFoundError:
     print(f"Error: The file '{filename}' was not found.")
@@ -281,7 +283,152 @@ def load_page_from_json(HttpRequest, filename="Page.JSON"):
         page = Page(**page_data)
         pages.append(page)
 
-    return pages
+      page_data = [vars(pg) for pg in Page._registry]
+
+    return page_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+
+def load_prerequisite_from_json(HttpRequest, filename="Prerequisite.JSON"):
+  prerequisites = []
+  Prerequisite.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for prerequisite_data in data:
+        # **curriculum_data unpacks dictionary keys into the __init__ arguments
+        prerequisite = Prerequisite(**prerequisite_data)
+        prerequisites.append(prerequisite)
+
+      prerequisite_data = [vars(prereq) for prereq in Prerequisite._registry]
+
+    return prerequisite_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+
+
+def load_subject_from_json(HttpRequest, filename="Subject.JSON"):
+  subjects = []
+  Subject.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for subject_data in data:
+        # **subject_data unpacks dictionary keys into the __init__ arguments
+        subject = Subject(**subject_data)
+        subjects.append(subject)
+
+      subject_data = [vars(subj) for subj in Subject._registry]
+
+    return subject_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+def load_poster_from_json(HttpRequest, filename="Poster.JSON"):
+  posters = []
+  Poster.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for poster_data in data:
+        # **subject_data unpacks dictionary keys into the __init__ arguments
+        poster = Poster(**poster_data)
+        posters.append(poster)
+
+      poster_data = [vars(post) for post in Poster._registry]
+
+    return poster_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+def load_material_from_json(HttpRequest, filename="Material.JSON"):
+  materials = []
+  Material.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for material_data in data:
+        # **subject_data unpacks dictionary keys into the __init__ arguments
+        material = Material(**material_data)
+        materials.append(material)
+
+      material_data = [vars(mat) for mat in Material._registry]
+
+    return material_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
+def load_report_from_json(HttpRequest, filename="Report.JSON"):
+  reports = []
+  Report.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for report_data in data:
+        # **subject_data unpacks dictionary keys into the __init__ arguments
+        report = Report(**report_data)
+        reports.append(report)
+
+      report_data = [vars(rept) for rept in Report._registry]
+
+    return report_data
 
   except FileNotFoundError:
     print(f"Error: The file '{filename}' was not found.")
