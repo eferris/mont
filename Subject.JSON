@@ -1,0 +1,17 @@
+[
+  {
+    "subject_id": 1,
+    "name": "Member Alpha",
+    "description": "First registered member object."
+  },
+  {
+    "subject_id": 2,
+    "name": "Member Beta",
+    "description": "Second registered member object."
+  },
+  {
+    "subject_id": 3,
+    "name": "Member Gamma",
+    "description": "Third registered member object."
+  }
+]

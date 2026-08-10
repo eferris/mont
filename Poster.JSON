@@ -1,0 +1,26 @@
+[
+  {
+    "poster_id": 1,
+    "lesson_id": 101,
+    "title": "Visual Guide to Cell Structures",
+    "description": "An illustrated diagram detailing eukaryotic and prokaryotic cell components."
+  },
+  {
+    "poster_id": 2,
+    "lesson_id": 102,
+    "title": "Pythagorean Theorem Breakdown",
+    "description": "A step-by-step visual proof and formula reference chart."
+  },
+  {
+    "poster_id": 3,
+    "lesson_id": 103,
+    "title": "Circle of Fifths Reference",
+    "description": "A comprehensive chart mapping major and minor key signatures."
+  },
+  {
+    "poster_id": 4,
+    "lesson_id": 104,
+    "title": "World Geography Map Overview",
+    "description": "Topographical map displaying major continental landmasses and oceans."
+  }
+]

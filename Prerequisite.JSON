@@ -1,0 +1,43 @@
+[
+  {
+    "prerequisite_id": null,
+    "page_id": 1,
+    "page_id_list": [
+      10,
+      11
+    ]
+  },
+  {
+    "prerequisite_id": 1,
+    "page_id": 2,
+    "page_id_list": [
+      12,
+      13,
+      14
+    ]
+  },
+  {
+    "prerequisite_id": 2,
+    "page_id": 3,
+    "page_id_list": [
+      15
+    ]
+  },
+  {
+    "prerequisite_id": 3,
+    "page_id": 4,
+    "page_id_list": [
+      16,
+      17
+    ]
+  },
+  {
+    "prerequisite_id": 4,
+    "page_id": 5,
+    "page_id_list": [
+      18,
+      19,
+      20
+    ]
+  }
+]

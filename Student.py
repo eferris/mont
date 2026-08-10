@@ -77,35 +77,7 @@ class Student:
 
 
   def __del__(self):
-    print(f"Student object destroyed for {self.first_name}")
-
-
-
-
-def load_students_from_json(filename="Student.JSON"):
-  students = []
-  Student.delete_all_instances();
-  try:
-    with open(filename, "r", encoding="utf-8") as file:
-      data = json.load(file)
-
-      # Handle cases where JSON is either a list of objects or a single object
-      if isinstance(data, dict):
-        data = [data]
-
-      for student_data in data:
-        # **student_data unpacks dictionary keys into the __init__ arguments
-        student = Student(**student_data)
-        students.append(student)
-
-    return students
-
-  except FileNotFoundError:
-    print(f"Error: The file '{filename}' was not found.")
-    return []
-  except json.JSONDecodeError:
-    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
-    return []
+    return
 
 
 
@@ -128,3 +100,35 @@ def save_students_to_json(students, filename="Student.JSON"):
     )
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
+
+
+
+
+def load_student_from_json(HttpRequest, filename="Student.JSON"):
+  students = []
+  Student.delete_all_instances();
+  try:
+    with open(filename, "r", encoding="utf-8") as file:
+      data = json.load(file)
+
+      # Handle cases where JSON is either a list of objects or a single object
+      if isinstance(data, dict):
+        data = [data]
+
+      for student_data in data:
+        # **student_data unpacks dictionary keys into the __init__ arguments
+        student = Student(**student_data)
+        students.append(student)
+
+      student_data = [vars(stud) for stud in Student._registry]
+
+    return student_data
+
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    return []
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
+    return []
+
+
