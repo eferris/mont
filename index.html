@@ -2,193 +2,198 @@
 <html lang="en">
 <head>
 
-    <link rel="stylesheet" type="text/css" href="mont.css">
-    <link rel="dummy icon" type="image/x-icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="mont.css">
+  <link rel="dummy icon" type="image/x-icon" href="data:,">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Montessori Sign In</title>
-    <style>
-        body { font-family: sans-serif; padding: 2rem; max-width: 500px; }
-        button { padding: 0.5rem 1rem; cursor: pointer; }
-        #output { margin-top: 1rem; padding: 1rem; background-color: #f0f0f0; border-radius: 4px; }
-        .error { color: red; }
-    </style>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montessori Sign In</title>
+  <style>
+      body { font-family: sans-serif; padding: 2rem; max-width: 500px; }
+      button { padding: 0.5rem 1rem; cursor: pointer; }
+      #output { margin-top: 1rem; padding: 1rem; background-color: #f0f0f0; border-radius: 4px; }
+      .error { color: red; }
+  </style>
+
+  <script type="module" src="./state.js" defer></script>
+
 </head>
 <body>
 
+<script type="module">
 
-    <h2>Montessori Sign In</h2>
-
-    <label for="email">Enter account email. Then choose your account:</label>
-    <input type="email" id="email" pattern=".+@example\.com" size="30" required />
-
-    <button id="fetchBtn" type="button" class="btn" style="margin: 15px;">Refresh List</button>
-    
-    <div id="output"></div>
-<!--    <div id="output">Click the button to Refresh and choose your account</div> -->
-   
-    <!-- Container where the select element will be placed -->
-    <div id="select-div"></div>
-  
-    <script>
-
-        let itemList = 0;  
-        let selectedValue = '';    
-        const output = document.getElementById("output");
-        const button = document.getElementById("fetchBtn");
-
-        const PROMPT = "-- Select an Option --";
-        
-        // 1. Data source for options
-        const optionsData = [
-         { value: '', text: PROMPT }
-        ];
-
-        // REPLACE THIS with your actual remote server IP or domain name
-        const DATA_URL = "http://localhost:8000/Data";
-        const SIGNIN_URL = "http://localhost:8000/SignIn";
-        const CURRICULUM_URL = "http://localhost:8000/Curriculum";
-        const PAGE_URL = "http://localhost:8000/Page";
-        const SUBJECT_URL = "http://localhost:8000/Subject";
-        const PREREQUISITE_URL = "http://localhost:8000/Prerequisite";
-        const REPORT_URL = "http://localhost:8000/Report";
-        const POSTER_URL = "http://localhost:8000/Poster";
-        const MATERIAL_URL = "http://localhost:8000/Material";
-        const STUDENT_URL = "http://localhost:8000/Student";
-        const LESSON_URL = "http://localhost:8000/Lesson";
-        const TEACHER_URL = "http://localhost:8000/Teacher";
+  import { stateTeacher } from './state.js';
+  import { stateStudent } from './state.js';
+  import { stateSubject } from './state.js';
+  import { stateLesson } from './state.js';
 
 
-        button.addEventListener("click", async () => {
 
-            const inputEl = document.getElementById('email');            
+const PROMPT = "-- Select an Option --";
+let itemList = 0;  
+let selectedValue = '';    
+
+// 1. Data source for options
+const optionsData = [
+  { value: '', text: PROMPT }
+];
+
+// REPLACE THIS with your actual remote server IP or domain name
+const DATA_URL = "http://localhost:8000/Data";
+const SIGNIN_URL = "http://localhost:8000/SignIn";
+const CURRICULUM_URL = "http://localhost:8000/Curriculum";
+const PAGE_URL = "http://localhost:8000/Page";
+const SUBJECT_URL = "http://localhost:8000/Subject";
+const PREREQUISITE_URL = "http://localhost:8000/Prerequisite";
+const REPORT_URL = "http://localhost:8000/Report";
+const POSTER_URL = "http://localhost:8000/Poster";
+const MATERIAL_URL = "http://localhost:8000/Material";
+const STUDENT_URL = "http://localhost:8000/Student";
+const LESSON_URL = "http://localhost:8000/Lesson";
+const TEACHER_URL = "http://localhost:8000/Teacher";
+
+
+if (window.appStatus) {    // check glocal state
+
+  console.log('entered again on appStatus being set')
+
+} 
+document.body.innerHTML = renderLoginScreen();
+
+const output = document.getElementById("output");
+const button = document.getElementById("fetchBtn");
+
+button.addEventListener("click", async () => {
+
+    const inputEl = document.getElementById('email');            
+    const textValue = inputEl.value.trim();
+    // 2. Check if the string is empty
+    if (textValue === '') {
+        output.textContent = `email is missing`;
+        return;
+    }
+
+    try {
+
+        output.textContent = "";
+        // Perform the asynchronous AJAX call to the remote FastAPI server
+        const response = await fetch(DATA_URL);
+
+        if (!response.ok) {
+        output.textContent = "Server returned status: ${response.status}";                  
+            throw new Error(`Server returned status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Step 1: Unwrap the outer JSON string
+        const decodedString = JSON.parse(data);
+
+        // Step 2: Parse the resulting string into a real JavaScript Array
+
+        let count = decodedString.length;
+        // output.textContent = `Fetched ${count} Administrators.`;
+
+        const selectContainer = document.createElement('select');
+        selectContainer.id = 'select-container';
+
+        optionsData.push({  value: '', text: '-- Select an Option --' });
+
+        const option = document.createElement('option');
+        option.value = '';
+        option.text = '-- Select an Option --';
+
+        // Append the default option to the element
+        selectContainer.appendChild(option);
+
+        // Step 3: Iterate through the elements cleanly
+        for (const item of decodedString) {
+          // console.log(item);
+
+
+          optionsData.push({ value: item, text: item });
+
+          const option = document.createElement('option');
+          option.value = item;
+          option.text = item;
+
+          // 5. Append the <select> element to the DOM
+          selectContainer.appendChild(option);
+        }
+        const container = document.getElementById('select-div');
+        container.innerHTML = ''; // Clear previous content
+        container.appendChild(selectContainer);
+        selectContainer.addEventListener('change', (event) => {
+            selectedValue = event.target.value;
+            if (selectedValue === PROMPT ) {
+                output.textContent = "Please select a valid option.";
+                return;
+            }
+
+            const inputEl = document.getElementById('email');
             const textValue = inputEl.value.trim();
             // 2. Check if the string is empty
             if (textValue === '') {
-               output.textContent = `email is missing`;
-               return;
-            }
+              output.textContent = `You selected: ${selectedValue} but email is missing`;
+            } else 
+            {
+              output.textContent = `Validating System for: ${selectedValue}  and  ${textValue}`;
+            }                 
 
-            try {
+            // Data to send for validation
+            const verificationRequest = {
+              selectedRole: selectedValue,
+              textEmail: textValue
+            };
 
-                output.textContent = "";
-                // Perform the asynchronous AJAX call to the remote FastAPI server
-                const response = await fetch(DATA_URL);
-
+            // Execute the HTTP POST request
+            fetch(SIGNIN_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json' // Essential: tells FastAPI to parse body as JSON
+              },
+              body: JSON.stringify(verificationRequest) // Convert JS object to JSON string
+            })
+              .then(response => {
                 if (!response.ok) {
-                output.textContent = "Server returned status: ${response.status}";                  
-                    throw new Error(`Server returned status: ${response.status}`);
+                  throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
-                const data = await response.json();
-
-                // Step 1: Unwrap the outer JSON string
-                const decodedString = JSON.parse(data);
-
-                // Step 2: Parse the resulting string into a real JavaScript Array
-
-                count = decodedString.length;
-                // output.textContent = `Fetched ${count} Administrators.`;
-
-                const selectContainer = document.createElement('select');
-                selectContainer.id = 'select-container';
-
-                optionsData.push({  value: '', text: '-- Select an Option --' });
-
-                const option = document.createElement('option');
-                option.value = '';
-                option.text = '-- Select an Option --';
-
-                // Append the default option to the element
-                selectContainer.appendChild(option);
-
-                // Step 3: Iterate through the elements cleanly
-                for (const item of decodedString) {
-                  // console.log(item);
+                return response.json();
+              })
+              .then(data => {
 
 
-                  optionsData.push({ value: item, text: item });
+                if ( data.message  === null){
+                  output.textContent = `Email  ${textValue} not found`;
+                }  else
 
-                  const option = document.createElement('option');
-                  option.value = item;
-                  option.text = item;
-
-                  // 5. Append the <select> element to the DOM
-                  selectContainer.appendChild(option);
+                if ( data.message.admin_id ==  verificationRequest.selectedRole) {
+                  output.textContent = `Found email: ${textValue} and account: ${selectedValue}`;
+                  window.appStatus = {selectedValue};
+                  alert(`Found email: ${textValue} and account: ${selectedValue}.   Loading...`);
+                  handleLoginSuccess(window.appStatus);
                 }
-                const container = document.getElementById('select-div');
-                container.innerHTML = ''; // Clear previous content
-                container.appendChild(selectContainer);
-                selectContainer.addEventListener('change', (event) => {
-                    selectedValue = event.target.value;
-                    if (selectedValue === PROMPT ) {
-                        output.textContent = "Please select a valid option.";
-                        return;
-                    }
-
-                    const inputEl = document.getElementById('email');
-                    const textValue = inputEl.value.trim();
-                    // 2. Check if the string is empty
-                    if (textValue === '') {
-                      output.textContent = `You selected: ${selectedValue} but email is missing`;
-                    } else 
-                    {
-                      output.textContent = `Validating System for: ${selectedValue}  and  ${textValue}`;
-                    }                 
-
-                    // Data to send for validation
-                    const verificationRequest = {
-                      selectedRole: selectedValue,
-                      textEmail: textValue
-                    };
-
-                    // Execute the HTTP POST request
-                    fetch(SIGNIN_URL, {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json' // Essential: tells FastAPI to parse body as JSON
-                      },
-                      body: JSON.stringify(verificationRequest) // Convert JS object to JSON string
-                    })
-                      .then(response => {
-                        if (!response.ok) {
-                          throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.json();
-                      })
-                      .then(data => {
+            })
+              .catch(error => {
+                output.textContent = `Internal Error.    Email  ${textValue} not found`;
+                console.error('Validation request failed:', error);
+              });
 
 
-                        if ( data.message  === null){
-                          output.textContent = `Email  ${textValue} not found`;
-                        }  else
-
-                        if ( data.message.admin_id ==  verificationRequest.selectedRole) {
-                          output.textContent = `Found email: ${textValue} and account: ${selectedValue}`;
-                          loadTeacherDashboardData();  // Call the function to load dashboard data
-
-                        }
-                    })
-                      .catch(error => {
-                        output.textContent = `Internal Error.    Email  ${textValue} not found`;
-                        console.error('Validation request failed:', error);
-                      });
-
-
-                });
-                if ((textValue != '') && (selectedValue === '')) {
-                      output.textContent = `Choose Account for email: ${textValue}.`;
-                      button.disable = true;
-                }
-                button.textContent = "Select Account Below";
-
-            } catch (error) {
-                output.classList.add("error");
-                output.textContent = `Error connecting to API: ${error.message}`;
-            }
         });
+        if ((textValue != '') && (selectedValue === '')) {
+              output.textContent = `Choose Account for email: ${textValue}.`;
+              button.disable = true;
+        }
+        button.textContent = "Select Account Below";
+
+    } catch (error) {
+        output.classList.add("error");
+        output.textContent = `Error connecting to API: ${error.message}`;
+    }
+});
+
+
 
 
 async function requestIt( url, options={})
@@ -203,7 +208,7 @@ async function requestIt( url, options={})
 async function loadTeacherDashboardData() {
     try {
         // Fetches concurrently instead of waiting for each one sequentially
-       let status=[resCurr,resSubj,resPrer,resMat,resPost,resPag,resLess,resStud,resTeach] 
+       const [resCurr,resSubj,resPrer,resMat,resPost,resPag,resLess,resStud,resTeach] 
         = await Promise.all
        ( 
         [requestIt(CURRICULUM_URL),
@@ -216,33 +221,18 @@ async function loadTeacherDashboardData() {
         requestIt(STUDENT_URL),
         requestIt(TEACHER_URL)]
        );
-      renderTeacherDashboardData(
-              resCurr,resSubj,resPrer,
-              resMat,resPost,resPag,
-              resLess,resStud,resTeach);
+
+      stateTeacher.setOptions(resTeach);
+      stateStudent.setOptions(resStud);
+      stateSubject.setOptions(resSubj);
+      stateLesson.setOptions(resLess);
+
 
     } catch (error) {
         handleGlobalError(error);
     }
 }
 
-async function renderTeacherDashboardData(
-  resCurr,resSubj,resPrer,
-  resMat,resPost,resPag,
-  resLess,resStud,resTeach) {
-  console.log(resCurr)
-  console.log(resSubj)
-  console.log(resPrer)
-  console.log(resMat)
-  console.log(resPost)
-  console.log(resPag)
-  console.log(resLess)
-  console.log(resStud)
-  console.log(resTeach)
-
-  // Update the UI with Teacher select element and resulting Teacher Dashboard 
-  return
-}
 
 function handleGlobalError(error) {
     // 1. Log details to terminal/console for debugging
@@ -252,8 +242,181 @@ function handleGlobalError(error) {
     output.textContent = `GlobalErrorHandler: ${error.message}`;
 }
 
-    </script>
+
+function renderDashboardScreen(thisAccount) {
+  return `
+    <main id="app">
+        <div class="dashboard-grid">
+          <!-- Left Column: Top Left Teachers with Students below -->
+          <div class="sidebar">
+            <div class="card">
+              <label for="teacher-select">Teachers</label>
+              <select id="teacher-select">
+                <option value="">Select a Teacher...</option>
+              </select>
+
+              <label for="student-select">Students</label>
+              <select id="student-select">
+                <option value="">Select a Student...</option>
+              </select>
+
+              <button id="load-lessons-btn">Load Lessons</button>
+            </div>
+          </div>
+
+          <!-- Right Main Area: Subjects & Lessons -->
+          <div class="main-content">
+            <div class="card">
+              <label for="subject-select">Subjects</label>
+              <select id="subject-select">
+                <option value="">Select a Subject...</option>
+              </select>
+
+              <label for="lesson-select">Lessons</label>
+              <select id="lesson-select">
+                <option value="">Select a Lesson...</option>
+              </select>
+
+              <div id="lesson-content-display" class="lesson-display">
+                <p><em>Select a student and click "Load Lessons" to display lesson details.</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+    `;
+}
+
+
+
+// Define your screen templates/render functions
+function renderLoginScreen() {
+  return `
+    <main id="app">
+    <h2>Montessori Sign In</h2>
+
+    <label for="email">Enter account email. Then choose your account:</label>
+    <input type="email" id="email" autocomplete="on" pattern=".+@example\.com" size="30" required />
+
+    <button id="fetchBtn" type="button" class="btn" style="margin: 15px;">Refresh List</button>
+    
+    <div id="output"></div>
+   
+    <!-- Container where the select element will be placed -->
+    <div id="select-div"></div>
+
+    </main>
+  `;
+}
+
+
+
+// Function to update the view
+function navigateTo(screenHtml, setupCallback) {
+  // 1. Parse the template string into an in-memory DOM Tree
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(screenHtml, 'text/html');
+  const newScreen = doc.body.firstElementChild;
+
+  // 2. Access/Modify the DOM nodes in memory BEFORE rendering
+  if (setupCallback) {
+    setupCallback(newScreen);
+  }
+
+  // 3. Clear body and mount the new screen to document.body
+  //document.body.innerHTML = '';
+  //document.body.appendChild(newScreen);
+}
+
+
+// Generic helper function to populate <select> options
+function populateSelect(selectElement, items, valueKey, textKey) {
+  console.log('Populating element:', selectElement);
+  console.log('Received items array:', items);
+
+  if (!selectElement) {
+    console.error('populateSelect target element is null!');
+    return;
+  }
+
+  if (!Array.isArray(items) || items.length === 0) {
+    console.warn('populateSelect received an empty or non-array items argument:', items);
+    return;
+  }
+
+  items.forEach(item => {
+    console.log(`Key check -> value: item['${valueKey}'] =`, item[valueKey], `| text: item['${textKey}'] =`, item[textKey]);
+    
+    const option = document.createElement('option');
+    option.value = item[valueKey] !== undefined ? item[valueKey] : '';
+    option.textContent = item[textKey] !== undefined ? item[textKey] : '';
+    selectElement.appendChild(option);
+  });
+}
+
+
+
+async function handleLoginSuccess(user) {
+
+  await loadTeacherDashboardData();  // Call fastapi for data from HTTP
+
+  // Render HTML string for teacher dashboard
+  const dashboardHtml = renderDashboardScreen(user);
+
+  // Pass a setup callback to configure elements before display
+  navigateTo(dashboardHtml, (screenDom) => {
+    // Both screens/data are accessible here!
+    document.body.innerHTML = dashboardHtml;
+
+    // DOM Elements
+    const teacherSelect = document.getElementById('teacher-select');
+    const studentSelect = document.getElementById('student-select');
+    const subjectSelect = document.getElementById('subject-select');
+    const lessonSelect = document.getElementById('lesson-select');
+    const loadLessonsBtn = document.getElementById('load-lessons-btn');
+    const lessonDisplay = document.getElementById('lesson-content-display');
+    stateTeacher.container = teacherSelect;
+    stateStudent.container = studentSelect;
+    stateSubject.container = subjectSelect;
+    stateLesson.container = lessonSelect;
+
+    populateSelect(stateTeacher.container, stateTeacher.getOptions(), 'teacher_id', 'first_name');
+    populateSelect(stateStudent.container, stateStudent.getOptions(), 'student_id', 'first_name');
+    populateSelect(stateSubject.container, stateSubject.getOptions(), 'subject_id', 'name');
+
+    // 2. Listener for Teacher element selection change
+    teacherSelect.addEventListener('change', (event) => {
+      const selectedTeacherId = event.target.value;
+      console.log(`Teacher selected ID: ${selectedTeacherId}`);
+      // Custom logic or API re-fetch can be triggered here on teacher change
+    });
+
+    // 3. Button Listener targeting Student selection to update Lesson content
+    loadLessonsBtn.addEventListener('click', () => {
+      const selectedStudentId = studentSelect.value;
+      if (!selectedStudentId) {
+        alert("Please select a student first.");
+        return;
+      }
+
+      // Clear and populate lessons dropdown
+      lessonSelect.innerHTML = '<option value="">Select a Lesson...</option>';
+      populateSelect(lessonSelect, stateLesson.getOptions(), 'lesson_id', 'title');
+
+      // Dynamically update the lesson content area for the chosen student
+      const studentName = studentSelect.options[studentSelect.selectedIndex].text;
+      lessonDisplay.innerHTML = `
+        <strong>Assigned Lessons for ${studentName}:</strong>
+        <ul>
+          ${stateLesson.getOptions().map(l => `<li><strong>${l.title}:</strong> ${l.content}</li>`).join('')}
+        </ul>
+      `;
+    }); // end of event listener on the loadLessons button
+  }); // end of navigate to
+
+} // end of handleLoginSuccess
+
+</script>
 
 </body>
 </html>
-
