@@ -1,7 +1,27 @@
 import json
-
 from pydantic import BaseModel
 
+
+class MyState:
+    thisAccount: str
+    isLoggedIn: bool
+
+    _registry = []
+
+    def __init__(self, thisAccount='', isLoggedIn=False):
+        
+        self.thisAccount = thisAccount
+        self.isLoggedIn = isLoggedIn
+
+    # Register this instance
+        MyState._registry.append(self)
+
+    @classmethod  
+    def __del__(self):
+        return
+
+
+state = MyState('',False)
 
 
 MATH = 1
@@ -14,7 +34,6 @@ ART = 7
 MUSIC = 8
 THEORY = 9
 
-thisAccount = ''
 
 class HttpRequest(BaseModel):
     selectedRole: str
@@ -26,8 +45,6 @@ origins = [
     "http://127.0.0.1:8080",  # For local testing
     "http://localhost:8080",  # For local testing
 ]
-
-
 
 
 class Report:

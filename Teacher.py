@@ -1,7 +1,7 @@
 
 import json
-from mont import thisAccount
 from mont import HttpRequest
+from mont import state
 
 
 class Administrator():
@@ -157,10 +157,11 @@ def save_administrators_to_json(administrators, filename="Administrator.JSON"):
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
 
+
 def get_admin_by_email(HttpRequest):
     for admin in Administrator._registry:
         if admin.email == HttpRequest.textEmail and admin.admin_id == HttpRequest.selectedRole:
-            thisAccount = HttpRequest.selectedRole
+            state.thisAccount = HttpRequest.selectedRole
             return admin
     return None
 
