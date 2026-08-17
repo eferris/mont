@@ -12,7 +12,7 @@ class Student:
       last_name=None,
       email=None,
       phone_number=None,
-      admin_id=None,
+      teacher_id=None,
       math_lesson_id_list=None,
       biology_lesson_id_list=None,
       music_lesson_id_list=None,
@@ -28,7 +28,7 @@ class Student:
     self.last_name = last_name
     self.email = email
     self.phone_number = phone_number
-    self.admin_id = admin_id
+    self.teacher_id = teacher_id
     # Ensure defaults fallback to lists if None is passed
     self.math_lesson_id_list = (
         math_lesson_id_list if math_lesson_id_list is not None else []

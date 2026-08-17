@@ -395,7 +395,7 @@ async function handleLoginSuccess(user) {
     loadLessonsBtn.addEventListener('click', () => {
       const selectedStudentId = studentSelect.value;
       if (!selectedStudentId) {
-        alert("Please select a student first.");
+        alert("Please select a student or subject first.");
         return;
       }
 
