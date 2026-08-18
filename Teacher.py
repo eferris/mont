@@ -166,11 +166,12 @@ def get_admin_by_email(HttpRequest):
     return None
 
 
-def load_teacher_from_json(HttpRequest, filename="Teacher.JSON"):
+def load_teacher_from_json(account='./', filename="Teacher.JSON"):
   teachers = []
   Teacher.delete_all_instances();
+  path = f"./{account}/{filename}"
   try:
-    with open(filename, "r", encoding="utf-8") as file:
+    with open(path, "r", encoding="utf-8") as file:
       data = json.load(file)
 
       # Handle cases where JSON is either a list of objects or a single object

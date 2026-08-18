@@ -1,4 +1,6 @@
 import json
+from mont import state
+
 
 class Lesson:
 
@@ -33,11 +35,13 @@ class Lesson:
         return
 
 
-def load_lesson_from_json(HttpRequest, filename="Lesson.JSON"):
+def load_lesson_from_json(account, filename="Lesson.JSON"):
   lessons = []
   Lesson.delete_all_instances();
+  path = f"./{account}/{filename}"
+
   try:
-    with open(filename, "r", encoding="utf-8") as file:
+    with open(path, "r", encoding="utf-8") as file:
       data = json.load(file)
 
       # Handle cases where JSON is either a list of objects or a single object

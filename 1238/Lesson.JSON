@@ -1,0 +1,134 @@
+[
+  {
+    "lesson_id": "LES-101",
+    "student_id": "STU-101",
+    "lesson_id_list": ["LES-101"],
+    "subject_id": 1,
+    "title": "Fractions and Decimals",
+    "description": "Introduction to basic fractional operations and decimal equivalents.",
+    "date": "2026-09-01",
+    "time": "09:00",
+    "review_date": "2026-09-08"
+  },
+  {
+    "lesson_id": "LES-102",
+    "student_id": "STU-101",
+    "lesson_id_list": ["LES-102"],
+    "subject_id": 2,
+    "title": "Sentence Diagramming",
+    "description": "Analyzing subject, predicate, and modifier placement in compound sentences.",
+    "date": "2026-09-02",
+    "time": "10:00",
+    "review_date": "2026-09-09"
+  },
+  {
+    "lesson_id": "LES-103",
+    "student_id": "STU-102",
+    "lesson_id_list": ["LES-103"],
+    "subject_id": 3,
+    "title": "Treble and Bass Clef Reading",
+    "description": "Identification of staff notes and rhythm intervals.",
+    "date": "2026-09-03",
+    "time": "11:00",
+    "review_date": "2026-09-10"
+  },
+  {
+    "lesson_id": "LES-104",
+    "student_id": "STU-103",
+    "lesson_id_list": ["LES-104"],
+    "subject_id": 4,
+    "title": "Landforms and Biomes",
+    "description": "Exploration of continental landforms, elevations, and climate bands.",
+    "date": "2026-09-04",
+    "time": "13:00",
+    "review_date": "2026-09-11"
+  },
+  {
+    "lesson_id": "LES-201",
+    "student_id": "STU-104",
+    "lesson_id_list": ["LES-201"],
+    "subject_id": 5,
+    "title": "Plant Cell Structure",
+    "description": "Microscopic examination of chloroplasts, cell walls, and vacuoles.",
+    "date": "2026-09-01",
+    "time": "09:30",
+    "review_date": "2026-09-08"
+  },
+  {
+    "lesson_id": "LES-202",
+    "student_id": "STU-104",
+    "lesson_id_list": ["LES-202"],
+    "subject_id": 6,
+    "title": "Color Wheel and Complementary Hues",
+    "description": "Primary, secondary, and tertiary color relationships in painting.",
+    "date": "2026-09-02",
+    "time": "10:30",
+    "review_date": "2026-09-09"
+  },
+  {
+    "lesson_id": "LES-203",
+    "student_id": "STU-105",
+    "lesson_id_list": ["LES-203"],
+    "subject_id": 7,
+    "title": "Polygons and Angle Calculations",
+    "description": "Calculating interior angles of regular and irregular polygons.",
+    "date": "2026-09-03",
+    "time": "11:30",
+    "review_date": "2026-09-10"
+  },
+  {
+    "lesson_id": "LES-204",
+    "student_id": "STU-106",
+    "lesson_id_list": ["LES-204"],
+    "subject_id": 8,
+    "title": "Ancient Civilizations: Nile Valley",
+    "description": "Agricultural, architectural, and societal systems of ancient Egypt.",
+    "date": "2026-09-04",
+    "time": "14:00",
+    "review_date": "2026-09-11"
+  },
+  {
+    "lesson_id": "LES-301",
+    "student_id": "STU-107",
+    "lesson_id_list": ["LES-301"],
+    "subject_id": 1,
+    "title": "Basic Algebraic Expressions",
+    "description": "Evaluating single-variable expressions and understanding linear equations.",
+    "date": "2026-09-01",
+    "time": "10:00",
+    "review_date": "2026-09-08"
+  },
+  {
+    "lesson_id": "LES-302",
+    "student_id": "STU-107",
+    "lesson_id_list": ["LES-302"],
+    "subject_id": 7,
+    "title": "Coordinate Plane Transformations",
+    "description": "Reflections, rotations, and translations across Cartesian axes.",
+    "date": "2026-09-02",
+    "time": "11:00",
+    "review_date": "2026-09-09"
+  },
+  {
+    "lesson_id": "LES-303",
+    "student_id": "STU-108",
+    "lesson_id_list": ["LES-303"],
+    "subject_id": 5,
+    "title": "Ecosystem Energy Flow",
+    "description": "Food webs, trophic levels, and energy dissipation principles.",
+    "date": "2026-09-03",
+    "time": "13:30",
+    "review_date": "2026-09-10"
+  },
+  {
+    "lesson_id": "LES-304",
+    "student_id": "STU-109",
+    "lesson_id_list": ["LES-304"],
+    "subject_id": 2,
+    "title": "Verb Tenses & Voice",
+    "description": "Mastering active vs. passive voice and irregular past participles.",
+    "date": "2026-09-04",
+    "time": "14:30",
+    "review_date": "2026-09-11"
+  }
+]

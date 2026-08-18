@@ -1,3 +1,11 @@
+
+
+// globals
+  import { stateTeacher } from './state.js';
+  import { stateStudent } from './state.js';
+  import { stateSubject } from './state.js';
+  import { stateLesson } from './state.js';
+
 /**
  * Initializes the dropdowns, populates baseline options, attaches listeners,
  * and sets initial disabled/enabled states.
@@ -5,9 +13,10 @@
 export function initScreen() {
     // 1. Initial baseline population
     renderSelectOptions(stateTeacher.container, stateTeacher.getOptions(), 'teacher_id', 'name', '-- Select Teacher --');
+    renderSelectOptions(stateStudent.container, stateStudent.getOptions(), 'student_id', 'name', '-- Select Student --');
     renderSelectOptions(stateSubject.container, stateSubject.getOptions(), 'subject_id', 'name', '-- Select Subject --');
     
-    clearSelect(stateStudent.container, '-- Select Student --');
+//    clearSelect(stateStudent.container, '-- Select Student --');
     clearSelect(stateLesson.container, '-- Select Lesson --');
 
     // 2. Initial state configuration

@@ -2,6 +2,7 @@ import json
 from mont import HttpRequest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from mont import state
 from mont import load_curriculum_from_json
 from mont import load_page_from_json
 from mont import load_subject_from_json
@@ -91,18 +92,18 @@ def read_report():
 
 @app.get("/Lesson")
 def read_lesson():
-    result=load_lesson_from_json(HttpRequest)
+    result=load_lesson_from_json(state.thisAccount)
     return(result)
 
 
 @app.get("/Student")
 def read_student():
-    result=load_student_from_json(HttpRequest)
+    result=load_student_from_json(state.thisAccount)
     return(result)
 
 
 @app.get("/Teacher")
 def read_teacher():
-    result=load_teacher_from_json(HttpRequest)
+    result=load_teacher_from_json(state.thisAccount)
     return(result)
 

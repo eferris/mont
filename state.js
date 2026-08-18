@@ -1,5 +1,5 @@
-const appStatus = '';
-window.appStatus = appStatus;
+const appAccount = '';
+window.appAccount = appAccount;
 
 export const stateTeacher = {
     data: [],
