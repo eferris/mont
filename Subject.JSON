@@ -1,17 +1,42 @@
 [
   {
     "subject_id": 1,
-    "name": "Member Alpha",
-    "description": "First registered member object."
+    "name": "Math",
+    "description": "Mathematics: addition through Trigonmetry"
   },
   {
     "subject_id": 2,
-    "name": "Member Beta",
-    "description": "Second registered member object."
+    "name": "Language",
+    "description": "Grammar Tenses and History."
   },
   {
     "subject_id": 3,
-    "name": "Member Gamma",
-    "description": "Third registered member object."
+    "name": "Music",
+    "description": "Music Theory."
+  },
+  {
+    "subject_id": 4,
+    "name": "Geography",
+    "description": "Study of the Earth"
+  },
+  {
+    "subject_id": 5,
+    "name": "Biology",
+    "description": "Study of Life."
+  },
+  {
+    "subject_id": 7,
+    "name": "Geometry",
+    "description": "Study of Shapes"
+  },
+  {
+    "subject_id": 8,
+    "name": "History",
+    "description": "Study of the Past."
+  },
+  {
+    "subject_id": 6,
+    "name": "Art",
+    "description": "Beginning Concepts of Art."
   }
 ]
