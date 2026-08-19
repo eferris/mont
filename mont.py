@@ -105,11 +105,10 @@ class Curriculum:
 
     _registry = []
 
-    def __init__(self, curriculum_id=None, subject_id=None, title=None, description=None):
-        self.curriculum_id = curriculum_id
+    def __init__(self, subject_id=None, title=None, page_id=[]):
         self.subject_id = subject_id
         self.title = title
-        self.description = description
+        self.page_id = page_id
 
     # Register this instance
         Curriculum._registry.append(self)
@@ -182,12 +181,12 @@ class Page:
 
     _registry = []
 
-    def __init__(self, page_id=None, prerequisite_id=None, material_id=None, title=None, content=None):
+    def __init__(self, page_id=None, prerequisite_id=[], material_id=[], title=None, subject_id=None):
         self.page_id = page_id
         self.prerequisite_id = prerequisite_id
         self.material_id = material_id
         self.title = title
-        self.content = content
+        self.subject_id = subject_id
 
     # Register this instance
         Page._registry.append(self)
