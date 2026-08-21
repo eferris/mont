@@ -3,903 +3,301 @@
         "page_id": 2,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Introduction to Art",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Introduction to Art",
         "subject_id": 6
     },
     {
         "page_id": 3,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Who Teaches the Art and Building-Block Lessons",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Who Teaches the Art and Building-Block Lessons",
         "subject_id": 6
     },
     {
         "page_id": 5,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " The Art Space and the Prepared Environment",
+        "title": "\u00a0\u00a0\u00a0\u00a0 The Art Space and the Prepared Environment",
         "subject_id": 6
     },
     {
         "page_id": 5,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Tools and Materials",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Tools and Materials",
         "subject_id": 6
     },
     {
         "page_id": 6,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Paints",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Paints",
         "subject_id": 6
     },
     {
         "page_id": 6,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Tempera",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Tempera",
         "subject_id": 6
     },
     {
         "page_id": 6,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Water-Color",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Water-Color",
         "subject_id": 6
     },
     {
         "page_id": 6,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Gouache",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Gouache",
         "subject_id": 6
     },
     {
         "page_id": 7,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Acrylic",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Acrylic",
         "subject_id": 6
     },
     {
         "page_id": 7,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Oil",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Oil",
         "subject_id": 6
     },
     {
         "page_id": 7,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Brushes",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Brushes",
         "subject_id": 6
     },
     {
         "page_id": 7,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Drawing Material",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Drawing Material",
         "subject_id": 6
     },
     {
         "page_id": 8,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Conte Crayons",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Conte Crayons",
         "subject_id": 6
     },
     {
         "page_id": 8,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Graphite Pencils",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Graphite Pencils",
         "subject_id": 6
     },
     {
         "page_id": 8,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Charcoal Pencils",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Charcoal Pencils",
         "subject_id": 6
     },
     {
         "page_id": 8,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Special Colored Pencils",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Special Colored Pencils",
         "subject_id": 6
     },
     {
         "page_id": 8,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "       Erasers",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Erasers",
         "subject_id": 6
     },
     {
         "page_id": 9,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Paper",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Paper",
         "subject_id": 6
     },
     {
         "page_id": 9,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Sculpture",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Sculpture",
         "subject_id": 6
     },
     {
         "page_id": 9,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Print-Making Materials",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Print-Making Materials",
         "subject_id": 6
     },
     {
         "page_id": 10,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Miscellaneous Supplies",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Miscellaneous Supplies",
         "subject_id": 6
     },
     {
         "page_id": 11,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Points About Presenting the Material",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Points About Presenting the Material",
         "subject_id": 6
     },
     {
         "page_id": 11,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Clean-up",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Clean-up",
         "subject_id": 6
     },
     {
         "page_id": 11,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Presentation",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Presentation",
         "subject_id": 6
     },
     {
         "page_id": 13,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Art Elements and Media",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Art Elements and Media",
         "subject_id": 6
     },
     {
         "page_id": 13,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Lines / Tempera",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Lines / Tempera",
         "subject_id": 6
     },
     {
         "page_id": 14,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Texture",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Texture",
         "subject_id": 6
     },
     {
         "page_id": 15,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Color",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Color",
         "subject_id": 6
     },
     {
         "page_id": 16,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Shades / Tints",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Shades / Tints",
         "subject_id": 6
     },
     {
         "page_id": 16,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "     Tone",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Tone",
         "subject_id": 6
     },
     {
         "page_id": 17,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Value / Contrast",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Value / Contrast",
         "subject_id": 6
     },
     {
         "page_id": 17,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Shape",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Shape",
         "subject_id": 6
     },
     {
         "page_id": 19,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Perspective",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Perspective",
         "subject_id": 6
     },
     {
         "page_id": 20,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Horizon Lines",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Horizon Lines",
         "subject_id": 6
     },
     {
         "page_id": 21,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Composition",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Composition",
         "subject_id": 6
     },
     {
         "page_id": 22,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Different Techniques with Different Media",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Different Techniques with Different Media",
         "subject_id": 6
     },
     {
         "page_id": 24,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Drawing",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Drawing",
         "subject_id": 6
     },
     {
         "page_id": 24,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Colored Pencils",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Colored Pencils",
         "subject_id": 6
     },
     {
         "page_id": 25,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   The Human Body",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 The Human Body",
         "subject_id": 6
     },
     {
         "page_id": 27,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Print-Making",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Print-Making",
         "subject_id": 6
     },
     {
         "page_id": 28,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Clay",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Clay",
         "subject_id": 6
     },
     {
         "page_id": 28,
         "prerequisite_id": [],
         "material_id": [],
-        "title": "   Firing",
+        "title": "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Firing",
         "subject_id": 6
     },
     {
         "page_id": 30,
         "prerequisite_id": [],
         "material_id": [],
-        "title": " Appendix",
-        "subject_id": 6
-    },
-    {
-        "page_id": 2,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Introduction to Art",
-        "subject_id": 6
-    },
-    {
-        "page_id": 3,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Who Teaches the Art and Building-Block Lessons",
-        "subject_id": 6
-    },
-    {
-        "page_id": 5,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " The Art Space and the Prepared Environment",
-        "subject_id": 6
-    },
-    {
-        "page_id": 5,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Tools and Materials",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Paints",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Tempera",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Water-Color",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Gouache",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Acrylic",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Oil",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Brushes",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Drawing Material",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Conte Crayons",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Graphite Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Charcoal Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Special Colored Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Erasers",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Paper",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Sculpture",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Print-Making Materials",
-        "subject_id": 6
-    },
-    {
-        "page_id": 10,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Miscellaneous Supplies",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Points About Presenting the Material",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Clean-up",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Presentation",
-        "subject_id": 6
-    },
-    {
-        "page_id": 13,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Art Elements and Media",
-        "subject_id": 6
-    },
-    {
-        "page_id": 13,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Lines / Tempera",
-        "subject_id": 6
-    },
-    {
-        "page_id": 14,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Texture",
-        "subject_id": 6
-    },
-    {
-        "page_id": 15,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Color",
-        "subject_id": 6
-    },
-    {
-        "page_id": 16,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Shades / Tints",
-        "subject_id": 6
-    },
-    {
-        "page_id": 16,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Tone",
-        "subject_id": 6
-    },
-    {
-        "page_id": 17,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Value / Contrast",
-        "subject_id": 6
-    },
-    {
-        "page_id": 17,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Shape",
-        "subject_id": 6
-    },
-    {
-        "page_id": 19,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Perspective",
-        "subject_id": 6
-    },
-    {
-        "page_id": 20,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Horizon Lines",
-        "subject_id": 6
-    },
-    {
-        "page_id": 21,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Composition",
-        "subject_id": 6
-    },
-    {
-        "page_id": 22,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Different Techniques with Different Media",
-        "subject_id": 6
-    },
-    {
-        "page_id": 24,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Drawing",
-        "subject_id": 6
-    },
-    {
-        "page_id": 24,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Colored Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 25,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   The Human Body",
-        "subject_id": 6
-    },
-    {
-        "page_id": 27,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Print-Making",
-        "subject_id": 6
-    },
-    {
-        "page_id": 28,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Clay",
-        "subject_id": 6
-    },
-    {
-        "page_id": 28,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Firing",
-        "subject_id": 6
-    },
-    {
-        "page_id": 30,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Appendix",
-        "subject_id": 6
-    },
-    {
-        "page_id": 2,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Introduction to Art",
-        "subject_id": 6
-    },
-    {
-        "page_id": 3,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Who Teaches the Art and Building-Block Lessons",
-        "subject_id": 6
-    },
-    {
-        "page_id": 5,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " The Art Space and the Prepared Environment",
-        "subject_id": 6
-    },
-    {
-        "page_id": 5,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Tools and Materials",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Paints",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Tempera",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Water-Color",
-        "subject_id": 6
-    },
-    {
-        "page_id": 6,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Gouache",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Acrylic",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Oil",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Brushes",
-        "subject_id": 6
-    },
-    {
-        "page_id": 7,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Drawing Material",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Conte Crayons",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Graphite Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Charcoal Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Special Colored Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 8,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "       Erasers",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Paper",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Sculpture",
-        "subject_id": 6
-    },
-    {
-        "page_id": 9,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Print-Making Materials",
-        "subject_id": 6
-    },
-    {
-        "page_id": 10,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Miscellaneous Supplies",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Points About Presenting the Material",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Clean-up",
-        "subject_id": 6
-    },
-    {
-        "page_id": 11,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Presentation",
-        "subject_id": 6
-    },
-    {
-        "page_id": 13,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Art Elements and Media",
-        "subject_id": 6
-    },
-    {
-        "page_id": 13,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Lines / Tempera",
-        "subject_id": 6
-    },
-    {
-        "page_id": 14,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Texture",
-        "subject_id": 6
-    },
-    {
-        "page_id": 15,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Color",
-        "subject_id": 6
-    },
-    {
-        "page_id": 16,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Shades / Tints",
-        "subject_id": 6
-    },
-    {
-        "page_id": 16,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "     Tone",
-        "subject_id": 6
-    },
-    {
-        "page_id": 17,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Value / Contrast",
-        "subject_id": 6
-    },
-    {
-        "page_id": 17,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Shape",
-        "subject_id": 6
-    },
-    {
-        "page_id": 19,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Perspective",
-        "subject_id": 6
-    },
-    {
-        "page_id": 20,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Horizon Lines",
-        "subject_id": 6
-    },
-    {
-        "page_id": 21,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Composition",
-        "subject_id": 6
-    },
-    {
-        "page_id": 22,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Different Techniques with Different Media",
-        "subject_id": 6
-    },
-    {
-        "page_id": 24,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Drawing",
-        "subject_id": 6
-    },
-    {
-        "page_id": 24,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Colored Pencils",
-        "subject_id": 6
-    },
-    {
-        "page_id": 25,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   The Human Body",
-        "subject_id": 6
-    },
-    {
-        "page_id": 27,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Print-Making",
-        "subject_id": 6
-    },
-    {
-        "page_id": 28,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Clay",
-        "subject_id": 6
-    },
-    {
-        "page_id": 28,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": "   Firing",
-        "subject_id": 6
-    },
-    {
-        "page_id": 30,
-        "prerequisite_id": [],
-        "material_id": [],
-        "title": " Appendix",
+        "title": "\u00a0\u00a0\u00a0\u00a0 Appendix",
         "subject_id": 6
     }
 ]

@@ -104,7 +104,7 @@ export function updateLessonState() {
         filteredLessons = allLessons.filter(lesson => 
             String(lesson.subject_id) === String(subjectVal)
         );
-        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
+//        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;
 
     } else if (studentVal !== '') {
@@ -130,7 +130,7 @@ export function updateLessonState() {
  * @param {string} labelKey - Key name for visible text (e.g., 'name', 'title').
  * @param {string} defaultText - Placeholder text for the default empty option.
  */
-function renderSelectOptions(selectElement, items, idKey, labelKey = 'name', defaultText = '-- Select --') {
+export function renderSelectOptions(selectElement, items, idKey, labelKey = 'name', defaultText = '-- Select --') {
     selectElement.innerHTML = '';
 
     const defaultOption = document.createElement('option');
