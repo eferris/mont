@@ -55,8 +55,8 @@ def parse_pdf_toc(pdf_path: str):
     for item in toc:
         level, title, page = item[0], item[1], item[2]
         
-        # Indent visually based on hierarchy level (Level 1 = 0 indents, Level 2 = 2 spaces, etc.)
-        indent = "  " * (level - 1)
+        # Indent visually based on hierarchy level
+        indent = '\u00A0' * (level * 4)
 
         curriculum.page_id.append(page)
 
@@ -68,7 +68,7 @@ def parse_pdf_toc(pdf_path: str):
         # Output the text of the entry
         print(f"{indent}- {title} (Page {page})")
 
-    save_art_pages_to_json(Page.get_all_instances())
+    save_new_pages_to_json(Page.get_all_instances())
     # Close the document
     doc.close()
 
@@ -103,7 +103,7 @@ def load_extant_curriculum_from_json( filename="Curriculum.JSON" ):
 
 
 
-def load_art_pages_from_json( filename="Page.JSON" ):
+def load_extant_pages_from_json( filename="Page.JSON" ):
     pages = []
     Page.delete_all_instances();
     if os.path.exists(filename) and os.path.getsize(filename) > 0:
@@ -129,7 +129,7 @@ def load_art_pages_from_json( filename="Page.JSON" ):
 
 
 
-def save_art_pages_to_json(pages, filename="Page.JSON"):
+def save_new_pages_to_json(pages, filename="Page.JSON"):
   """Saves a single Page object or a list of Page objects to a JSON file."""
   # Ensure input is formatted as a list
   if isinstance(pages, Page):
@@ -150,7 +150,7 @@ def save_art_pages_to_json(pages, filename="Page.JSON"):
 
 
 
-def save_art_curriculum_to_json(curriculums, filename="Curriculum.JSON"):
+def save_new_curriculum_to_json(curriculums, filename="Curriculum.JSON"):
   """Saves a single  object or a list of objects to a JSON file."""
   # Ensure input is formatted as a list
   if isinstance(curriculums, Curriculum):
@@ -202,13 +202,16 @@ def load_subject_from_json(subjectName='Art', filename="Subject.JSON"):
 if __name__ == "__main__":
 
     # Replace with your PDF path or pass it via command line
-    file_path = sys.argv[1] if len(sys.argv) > 1 else "final.art.pdf"
+  if len(sys.argv) == 3:
+    inputPDF = sys.argv[1]
+    inputSubject = sys.argv[2]
 
     curriculum = Curriculum()
-
-    load_subject_from_json()
-    existsPages = load_art_pages_from_json()
+    load_subject_from_json(inputSubject)
+    existsPages = load_extant_pages_from_json()
     existsCurriculum = load_extant_curriculum_from_json()    
-    parse_pdf_toc(file_path)
-
-    save_art_curriculum_to_json( curriculum.get_all_instances() )    
+    parse_pdf_toc(inputPDF)
+    save_new_curriculum_to_json( curriculum.get_all_instances() )
+        
+  else:
+    print( "args pdf and subject required")

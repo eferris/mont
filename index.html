@@ -26,6 +26,12 @@
   import { stateStudent } from './state.js';
   import { stateSubject } from './state.js';
   import { stateLesson } from './state.js';
+  import { stateCurriculum } from './state.js';
+  import { statePage } from './state.js';
+  import { statePoster } from './state.js';
+  import { stateMaterial } from './state.js';
+  import { statePrerequisite } from './state.js';
+  import { renderSelectOptions } from './monthelp.js';
   import { initScreen } from './monthelp.js';
 
 
@@ -168,7 +174,7 @@ button.addEventListener("click", async () => {
                 if ( data.message.admin_id ==  verificationRequest.selectedRole) {
                   output.textContent = `Found email: ${textValue} and account: ${selectedValue}`;
                   window.appAccount = {selectedValue};
-                  alert(`Found email: ${textValue} and account: ${selectedValue}.   Loading...`);
+//                  alert(`Found email: ${textValue} and account: ${selectedValue}.   Loading...`);
                   handleLoginSuccess(window.appAccount);
                 }
             })
@@ -206,7 +212,7 @@ async function requestIt( url, options={})
 async function loadTeacherDashboardData() {
     try {
         // Fetches concurrently instead of waiting for each one sequentially
-       const [resCurr,resSubj,resPrer,resMat,resPost,resPag,resLess,resStud,resTeach] 
+       const [resCurr,resSubj,resPrer,resMat,resPost,resPage,resLess,resStud,resTeach] 
         = await Promise.all
        ( 
         [requestIt(CURRICULUM_URL),
@@ -224,6 +230,12 @@ async function loadTeacherDashboardData() {
       stateStudent.setOptions(resStud);
       stateSubject.setOptions(resSubj);
       stateLesson.setOptions(resLess);
+      statePage.setOptions(resPage);
+      stateCurriculum.setOptions(resCurr);
+      stateMaterial.setOptions(resMat);
+      statePoster.setOptions(resPost);
+      statePrerequisite.setOptions(resPrer);
+
 
 
     } catch (error) {
@@ -276,7 +288,7 @@ function renderDashboardScreen(thisAccount) {
               </select>
 
               <div id="lesson-content-display" class="lesson-display">
-                <p><em>Select a student and click "Load Lessons" to display lesson details.</em></p>
+                <p><em>Select a student and or a subject. Click "Load Lessons" to display lesson info.</em></p>
               </div>
             </div>
           </div>
@@ -380,42 +392,83 @@ async function handleLoginSuccess(user) {
 
     initScreen();
 
-
-//    populateSelect(stateTeacher.container, stateTeacher.getOptions(), 'teacher_id', 'first_name');
-//    populateSelect(stateStudent.container, stateStudent.getOptions(), 'student_id', 'first_name');
-//    populateSelect(stateSubject.container, stateSubject.getOptions(), 'subject_id', 'name');
-
-    // 2. Listener for Teacher element selection change
-//    teacherSelect.addEventListener('change', (event) => {
-//      const selectedTeacherId = event.target.value;
-//      console.log(`Teacher selected ID: ${selectedTeacherId}`);
-//      // Custom logic or API re-fetch can be triggered here on teacher change
-//    });
-
-    // 3. Button Listener targeting Student selection to update Lesson content
+    //  Button Listener targeting Student selection to update Lesson content
     loadLessonsBtn.addEventListener('click', () => {
+
+      let selectedName = '';
+      let selectedSubject = '';
+      let typeName = '';
+
       const selectedStudentId = studentSelect.value;
-      if (!selectedStudentId) {
-        alert("Please select a student or subject first.");
+      const selectedSubjectId = subjectSelect.value;
+      const allSubjects = stateSubject.getOptions();
+      const allStudents = stateStudent.getOptions();
+      const allPages = statePage.getOptions();
+      const allLessons = stateLesson.getOptions();
+
+
+      if ((!selectedStudentId) && (!selectedSubjectId)) {
+        alert("Please select a student and/or subject first.");
         return;
       }
 
-      // Clear and populate lessons dropdown
-      lessonSelect.innerHTML = '<option value="">Select a Lesson...</option>';
-      populateSelect(lessonSelect, stateLesson.getOptions(), 'lesson_id', 'title');
+      // display entire curriculum for the selected subject
+      if ((!selectedStudentId) && (selectedSubjectId)) {
+        typeName = "Curriculum For ";
+        const pageCurriculum = allPages.filter(page => 
+            String(page.subject_id) === String(selectedSubjectId)
+        );
+        let selectedSubject = allSubjects.filter(subj => 
+            String(subj.subject_id) === String(selectedSubjectId)
+        );
+        selectedName = selectedSubject[0].name;
 
-      // Dynamically update the lesson content area for the chosen student
-      const studentName = studentSelect.options[studentSelect.selectedIndex].text;
+        renderSelectOptions(stateLesson.container, pageCurriculum, 'title', 'name', '-- Select Lesson --');
+        stateLesson.container.disabled = false;
+ 
+      }
+      else
+      {  // request for student's lesson info
+
+        typeName = "Lessons For ";
+
+        // Dynamically update the lesson content area for the chosen student
+        const selectedLessons = allLessons.filter(lesson => 
+            String(lesson.student_id) === String(selectedStudentId)
+        );
+
+        // Clear and populate lessons dropdown
+        lessonSelect.innerHTML = '<option value="">Select a Lesson...</option>';
+
+        renderSelectOptions(stateLesson.container, selectedLessons, 'title', 'name', '-- Select Lesson --');
+        stateLesson.container.disabled = false;
+
+        // Dynamically update the lesson content area for the chosen student
+//        lessonDisplay.innerHTML = `
+//          <strong>Completed Lessons for ${selectedStudentId.name}:</strong>
+//          <ul>
+//            ${stateLesson.getOptions().map(l => `<li><strong>${l.title}:</strong> ${l.description}</li>`).join('')}
+//          </ul>
+//        `;
+      }
+
       lessonDisplay.innerHTML = `
-        <strong>Assigned Lessons for ${studentName}:</strong>
+        <strong>${typeName} ${selectedName}:</strong>
         <ul>
-          ${stateLesson.getOptions().map(l => `<li><strong>${l.title}:</strong> ${l.content}</li>`).join('')}
+          ${stateLesson.container.innerHTML}
         </ul>
-      `;
+    ` ;
+
     }); // end of event listener on the loadLessons button
   }); // end of navigate to
 //  document.body.appendChild(newScreen);
 
+  document.title = "AMI Dashboard"
+  const heading = 
+  document.createElement('h3');
+  heading.textContent = "AMI Elementary Teacher Dashboard";
+  heading.classList = 'screen-title';
+  app.prepend(heading);
 
 } // end of handleLoginSuccess
 
