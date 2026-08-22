@@ -78,25 +78,28 @@ def parse_pdf_toc(pdf_path: str):
 def load_extant_curriculum_from_json( filename="Curriculum.JSON" ):
     curriculums = []
     if os.path.exists(filename) and os.path.getsize(filename) > 0:
-        with open(filename, "r", encoding="utf-8") as file:
-            data = json.load(file)
+      try:
+          with open(filename, "r", encoding="utf-8") as file:
+              data = json.load(file)
 
-        # Handle cases where JSON is either a list of objects or a single object
-        if isinstance(data, dict):
-            data = [data]
+          # Handle cases where JSON is either a list of objects or a single object
+          if isinstance(data, dict):
+              data = [data]
 
-        for curriculum_data in data:
-            # **curriculum_data unpacks dictionary keys into the __init__ arguments
-            extantCurriculum = Curriculum(**curriculum_data)
-            curriculums.append(extantCurriculum)
+          for curriculum_data in data:
+              # **curriculum_data unpacks dictionary keys into the __init__ arguments
+              extantCurriculum = Curriculum(**curriculum_data)
+              curriculums.append(extantCurriculum)
 
-        curriculum_data = [vars(curr) for curr in Curriculum._registry]
+          curriculum_data = [vars(curr) for curr in Curriculum._registry]
 
-        return curriculum_data
-
+          return curriculum_data
+      except OSError as e:
+           sys.exit(f"I/O Error. {e.errno} {e.strerror}")
     else:  
         data = []
         return data
+
 
 
 
@@ -107,24 +110,28 @@ def load_extant_pages_from_json( filename="Page.JSON" ):
     pages = []
     Page.delete_all_instances();
     if os.path.exists(filename) and os.path.getsize(filename) > 0:
-        with open(filename, "r", encoding="utf-8") as file:
-            data = json.load(file)
+        try:
+          with open(filename, "r", encoding="utf-8") as file:
+              data = json.load(file)
 
-        # Handle cases where JSON is either a list of objects or a single object
-        if isinstance(data, dict):
-            data = [data]
+          # Handle cases where JSON is either a list of objects or a single object
+          if isinstance(data, dict):
+              data = [data]
 
-        for page_data in data:
-            # **page_data unpacks dictionary keys into the __init__ arguments
-            page = Page(**page_data)
-            pages.append(page)
+          for page_data in data:
+              # **page_data unpacks dictionary keys into the __init__ arguments
+              page = Page(**page_data)
+              pages.append(page)
 
-        page_data = [vars(pg) for pg in Page._registry]
-        #  return JSON format of Page.JSON
-        return page_data  
+          page_data = [vars(pg) for pg in Page._registry]
+          #  return JSON format of Page.JSON
+          return page_data  
+        except OSError as e:
+           sys.exit(f"I/O Error. {e.errno} {e.strerror}")
     else:
-        data=[]
-        return data
+      data=[]
+      return
+    
 
 
 
@@ -147,6 +154,7 @@ def save_new_pages_to_json(pages, filename="Page.JSON"):
     )
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
+    sys.exit(f"I/O Error. {e.errno} {e.strerror}")
 
 
 
@@ -168,6 +176,7 @@ def save_new_curriculum_to_json(curriculums, filename="Curriculum.JSON"):
     )
   except IOError as e:
     print(f"Failed to write to file '{filename}': {e}")
+    sys.exit(f"I/O Error. {e.errno} {e.strerror}")
 
 
 def load_subject_from_json(subjectName='Art', filename="Subject.JSON"):
@@ -189,12 +198,13 @@ def load_subject_from_json(subjectName='Art', filename="Subject.JSON"):
 
     return thisSubject
 
-  except FileNotFoundError:
+  except FileNotFoundError as e:
     print(f"Error: The file '{filename}' was not found.")
-    return []
-  except json.JSONDecodeError:
+    sys.exit(f"I/O Error. {e.errno} {e.strerror}")
+
+  except json.JSONDecodeError as e:
     print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
-    return []
+    sys.exit(f"I/O Error. {e.errno} {e.strerror}")
 
 
 
