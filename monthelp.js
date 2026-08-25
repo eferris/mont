@@ -5,6 +5,8 @@
   import { stateStudent } from './state.js';
   import { stateSubject } from './state.js';
   import { stateLesson } from './state.js';
+  import { myDisplay } from './state.js';
+
 
 /**
  * Initializes the dropdowns, populates baseline options, attaches listeners,
@@ -38,7 +40,8 @@ export function initScreen() {
  * and cascades update to lesson state.
  */
 function onTeacherChange() {
-    const teacherId = stateTeacher.container.value;
+
+    let teacherId = stateTeacher.container.value;
 
     // Reset dependent student dropdown
     clearSelect(stateStudent.container, '-- Select Student --');
@@ -82,12 +85,22 @@ function onSubjectChange() {
 export function updateLessonState() {
     const studentVal = stateStudent.container.value;
     const subjectVal = stateSubject.container.value;
+    const TeacherVal = stateTeacher.container.value;
+    const subjectIndex = stateSubject.container.selectedIndex;
+    const studentIndex = stateStudent.container.selectedIndex;
+    const student_name = stateStudent.container.options[stateStudent.container.selectedIndex].innerHTML;
+    const subject_name = stateSubject.container.options[stateSubject.container.selectedIndex].innerHTML;
+   
     const allLessons = stateLesson.getOptions();
+
+    myDisplay.typeName = '';
+    myDisplay.selectedName = '';
 
     // 1. Reset current Lesson selection and clear options
     clearSelect(stateLesson.container, '-- Select Lesson --');
 
     let filteredLessons = [];
+    let newContent = []
 
     // 2. Evaluate selection combinations
     if (studentVal !== '' && subjectVal !== '') {
@@ -96,14 +109,33 @@ export function updateLessonState() {
             String(lesson.student_id) === String(studentVal) &&
             String(lesson.subject_id) === String(subjectVal)
         );
-        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
-        stateLesson.container.disabled = false;
 
-    } else if (subjectVal !== '') {
+//        student_name = stateStudent[studentIndex];
+//        subject_name = stateSubject.data[subjectIndex];
+
+        if (filteredLessons.length === 0) {
+
+            myDisplay.typeName = 'No Lessons for ' + student_name + ' and ' + subject_name;
+            newContent = myDisplay.oldContent;
+        }
+        else
+        {
+            renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
+            stateLesson.container.disabled = false;
+
+            myDisplay.typeName =  subject_name + ' ';  
+            myDisplay.selectedName = 
+            'Lessons for ' + student_name;  
+
+            newContent = stateLesson.container.innerHTML.replace( '-- Select Lesson --', '-- Completed --')
+        }
+
+    } else if (subjectVal !== '') {   
         // Case 2: Only Subject is selected
         filteredLessons = allLessons.filter(lesson => 
             String(lesson.subject_id) === String(subjectVal)
         );
+
 //        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;
 
@@ -112,13 +144,34 @@ export function updateLessonState() {
         filteredLessons = allLessons.filter(lesson => 
             String(lesson.student_id) === String(studentVal)
         );
-        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
-        stateLesson.container.disabled = false;
+
+        if (filteredLessons.length === 0) {
+            myDisplay.typeName = 'No Lessons for ' + student_name;
+            newContent = myDisplay.oldContent;
+        } 
+        else
+        {
+            renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
+            stateLesson.container.disabled = false;
+            myDisplay.typeName = 'Lessons for ' + student_name;
+            newContent = stateLesson.container.innerHTML.replace( '-- Select Lesson --', 'Completed')
+        }
 
     } else {
         // Case 4: Neither Student nor Subject is selected
         stateLesson.container.disabled = true;
+        myDisplay.typeName = 'Make Selection(s)';
+        myDisplay.selectedName = '';
+        newContent = myDisplay.oldContent;
     }
+
+    myDisplay.container.innerHTML = `
+        <strong>${myDisplay.typeName} ${myDisplay.selectedName}</strong>
+        <ul>
+            ${newContent}
+        </ul>
+        `;    
+
 }
 
 

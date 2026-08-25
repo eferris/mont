@@ -31,13 +31,17 @@
   import { statePoster } from './state.js';
   import { stateMaterial } from './state.js';
   import { statePrerequisite } from './state.js';
+  import { myDisplay } from './state.js';
+
   import { renderSelectOptions } from './monthelp.js';
   import { initScreen } from './monthelp.js';
 
 
 const PROMPT = "-- Select an Option --";
-let itemList = 0;  
-let selectedValue = '';    
+// let itemList = 0;  
+let selectedValue = '';
+myDisplay.typeName = '';
+myDisplay.selectedName = '';    
 
 // 1. Data source for options
 const optionsData = [
@@ -103,11 +107,11 @@ button.addEventListener("click", async () => {
         const selectContainer = document.createElement('select');
         selectContainer.id = 'select-container';
 
-        optionsData.push({  value: '', text: '-- Select an Option --' });
+        optionsData.push({  value: '', text: PROMPT });
 
         const option = document.createElement('option');
         option.value = '';
-        option.text = '-- Select an Option --';
+        option.text = PROMPT;
 
         // Append the default option to the element
         selectContainer.appendChild(option);
@@ -129,10 +133,6 @@ button.addEventListener("click", async () => {
         container.appendChild(selectContainer);
         selectContainer.addEventListener('change', (event) => {
             selectedValue = event.target.value;
-            if (selectedValue === PROMPT ) {
-                output.textContent = "Please select a valid option.";
-                return;
-            }
 
             const inputEl = document.getElementById('email');
             const textValue = inputEl.value.trim();
@@ -385,20 +385,25 @@ async function handleLoginSuccess(user) {
     const lessonSelect = document.getElementById('lesson-select');
     const loadLessonsBtn = document.getElementById('load-lessons-btn');
     const lessonDisplay = document.getElementById('lesson-content-display');
+    const subjectIndex = subjectSelect.selectedIndex;
+    const studentIndex = studentSelect.selectedIndex;
+
+
     stateTeacher.container = teacherSelect;
     stateStudent.container = studentSelect;
     stateSubject.container = subjectSelect;
     stateLesson.container = lessonSelect;
+    myDisplay.container = lessonDisplay
 
     initScreen();
 
     //  Button Listener targeting Student selection to update Lesson content
     loadLessonsBtn.addEventListener('click', () => {
 
-      let selectedName = '';
       let selectedSubject = '';
-      let typeName = '';
-
+      myDisplay.typeName = '';
+      myDisplay.selectedName = '';
+      
       const selectedStudentId = studentSelect.value;
       const selectedSubjectId = subjectSelect.value;
       const allSubjects = stateSubject.getOptions();
@@ -414,48 +419,48 @@ async function handleLoginSuccess(user) {
 
       // display entire curriculum for the selected subject
       if ((!selectedStudentId) && (selectedSubjectId)) {
-        typeName = "Curriculum For ";
+        myDisplay.typeName = "Curriculum For ";
         const pageCurriculum = allPages.filter(page => 
             String(page.subject_id) === String(selectedSubjectId)
         );
         let selectedSubject = allSubjects.filter(subj => 
             String(subj.subject_id) === String(selectedSubjectId)
         );
-        selectedName = selectedSubject[0].name;
+        myDisplay.selectedName = selectedSubject.data[subjectIndex].name;
 
         renderSelectOptions(stateLesson.container, pageCurriculum, 'title', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;
- 
+        stateTeacher.container.selectedIndex = 0;  // default Teacher
+        stateStudent.container.selectedIndex = 0;  // default Teacher
+        stateStudent.container.disabled = true;
       }
       else
       {  // request for student's lesson info
 
-        typeName = "Lessons For ";
+        myDisplay.typeName = "Lessons For ";
 
         // Dynamically update the lesson content area for the chosen student
         const selectedLessons = allLessons.filter(lesson => 
             String(lesson.student_id) === String(selectedStudentId)
         );
+                const selectedStudent = allStudents.filter(student => 
+            String(student.student_id) === String(selectedStudentId)
+        );
+        
+        myDisplay.selectedName = studentSelect.data[studentIndex].name;
 
         // Clear and populate lessons dropdown
-        lessonSelect.innerHTML = '<option value="">Select a Lesson...</option>';
+        lessonSelect.innerHTML = '<option value="">PROMPT</option>';
 
         renderSelectOptions(stateLesson.container, selectedLessons, 'title', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;
-
-        // Dynamically update the lesson content area for the chosen student
-//        lessonDisplay.innerHTML = `
-//          <strong>Completed Lessons for ${selectedStudentId.name}:</strong>
-//          <ul>
-//            ${stateLesson.getOptions().map(l => `<li><strong>${l.title}:</strong> ${l.description}</li>`).join('')}
-//          </ul>
-//        `;
+       
       }
-
+      let newContent = stateLesson.container.innerHTML.replace( 'Select Lesson', 'Overview')
       lessonDisplay.innerHTML = `
-        <strong>${typeName} ${selectedName}:</strong>
+        <strong>${myDisplay.typeName} ${myDisplay.selectedName}:</strong>
         <ul>
-          ${stateLesson.container.innerHTML}
+          ${newContent}
         </ul>
     ` ;
 

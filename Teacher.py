@@ -37,10 +37,9 @@ class Teacher:
 
     _registry = []
 
-    def __init__(self, teacher_id=None, first_name=None, last_name=None, email=None, phone_number=None, admin_id=None):
+    def __init__(self, teacher_id=None, name=None, email=None, phone_number=None, admin_id=None):
         self.teacher_id = teacher_id
-        self.first_name = first_name
-        self.last_name = last_name
+        self.name = name
         self.email = email
         self.phone_number = phone_number
         self.admin_id = admin_id

@@ -1,6 +1,13 @@
 const appAccount = '';
 window.appAccount = appAccount;
 
+export  let myDisplay = {
+    container: '',
+    typeName: '',
+    selectedName: '',
+    oldContent: 'Select a student and or a subject. Click "Load Lessons" to display lesson info.'
+
+}
 
 export const stateTeacher = {
     data: [],
