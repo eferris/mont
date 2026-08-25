@@ -10,8 +10,7 @@ class Student:
   def __init__(
       self,
       student_id=None,
-      first_name=None,
-      last_name=None,
+      name=None,
       email=None,
       phone_number=None,
       teacher_id=None,
@@ -26,8 +25,7 @@ class Student:
       geography_lesson_id_list=None,
   ):
     self.student_id = student_id
-    self.first_name = first_name
-    self.last_name = last_name
+    self.name = name
     self.email = email
     self.phone_number = phone_number
     self.teacher_id = teacher_id

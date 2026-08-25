@@ -1,8 +1,7 @@
 [
   {
     "student_id": "STU-101",
-    "first_name": "Liam",
-    "last_name": "Johnson",
+    "name": "Liam Johnson",
     "email": "liam.j@example.com",
     "phone_number": "555-0201",
     "teacher_id": 1233,
@@ -18,8 +17,7 @@
   },
   {
     "student_id": "STU-102",
-    "first_name": "Emma",
-    "last_name": "Watson",
+    "name": "Emma Watson",
     "email": "emma.w@example.com",
     "phone_number": "555-0202",
     "teacher_id": 1233,
@@ -35,8 +33,7 @@
   },
   {
     "student_id": "STU-103",
-    "first_name": "Noah",
-    "last_name": "Miller",
+    "name": "Noah Miller",
     "email": "noah.m@example.com",
     "phone_number": "555-0203",
     "teacher_id": 1233,
@@ -52,8 +49,7 @@
   },
   {
     "student_id": "STU-104",
-    "first_name": "Olivia",
-    "last_name": "Brown",
+    "name": "Olivia Brown",
     "email": "olivia.b@example.com",
     "phone_number": "555-0204",
     "teacher_id": 1240,
@@ -69,8 +65,7 @@
   },
   {
     "student_id": "STU-105",
-    "first_name": "Lucas",
-    "last_name": "Davis",
+    "name": "Lucas Davis",
     "email": "lucas.d@example.com",
     "phone_number": "555-0205",
     "teacher_id": 1240,
@@ -86,8 +81,7 @@
   },
   {
     "student_id": "STU-106",
-    "first_name": "Sophia",
-    "last_name": "Garcia",
+    "name": "Sophia Garcia",
     "email": "sophia.g@example.com",
     "phone_number": "555-0206",
     "teacher_id": 1240,
@@ -103,8 +97,7 @@
   },
   {
     "student_id": "STU-107",
-    "first_name": "Mason",
-    "last_name": "Martinez",
+    "name": "Mason Martinez",
     "email": "mason.m@example.com",
     "phone_number": "555-0207",
     "teacher_id": 1238,
@@ -120,8 +113,7 @@
   },
   {
     "student_id": "STU-108",
-    "first_name": "Isabella",
-    "last_name": "Hernandez",
+    "name": "Isabella Hernandez",
     "email": "isabella.h@example.com",
     "phone_number": "555-0208",
     "teacher_id": 1238,
@@ -137,8 +129,7 @@
   },
   {
     "student_id": "STU-109",
-    "first_name": "Ethan",
-    "last_name": "Lopez",
+    "name": "Ethan Lopez",
     "email": "ethan.l@example.com",
     "phone_number": "555-0209",
     "teacher_id": 1238,
