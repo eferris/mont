@@ -286,7 +286,6 @@ function renderDashboardScreen(thisAccount) {
               <select id="lesson-select">
                 <option value="">Select a Lesson...</option>
               </select>
-
               <div id="lesson-content-display" class="lesson-display">
                 <p><em>Select a student and or a subject. Click "Load Lessons" to display lesson info.</em></p>
               </div>
@@ -426,7 +425,7 @@ async function handleLoginSuccess(user) {
         let selectedSubject = allSubjects.filter(subj => 
             String(subj.subject_id) === String(selectedSubjectId)
         );
-        myDisplay.selectedName = selectedSubject.data[subjectIndex].name;
+        myDisplay.selectedName = selectedSubject[0].name;
 
         renderSelectOptions(stateLesson.container, pageCurriculum, 'title', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;

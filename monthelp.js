@@ -138,6 +138,10 @@ export function updateLessonState() {
 
 //        renderSelectOptions(stateLesson.container, filteredLessons, 'lesson_id', 'name', '-- Select Lesson --');
         stateLesson.container.disabled = false;
+        newContent = myDisplay.oldContent;
+        myDisplay.typeName = "Curriculum For "
+        myDisplay.selectedName = subject_name;
+        myDisplay.container.innerHTML = '';
 
     } else if (studentVal !== '') {
         // Case 3: Only Student is selected
@@ -167,11 +171,9 @@ export function updateLessonState() {
 
     myDisplay.container.innerHTML = `
         <strong>${myDisplay.typeName} ${myDisplay.selectedName}</strong>
-        <ul>
-            ${newContent}
-        </ul>
-        `;    
+            <p><em>${newContent}</em></p>
 
+        `;    
 }
 
 
