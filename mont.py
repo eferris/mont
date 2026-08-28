@@ -181,15 +181,29 @@ class Page:
 
     _registry = []
 
-    def __init__(self, page_id=None, prerequisite_id=[], material_id=[], title=None, subject_id=None):
+    def __init__(self, page_id=None, prerequisite_text='', prerequisite_list = None, 
+                 material_text='', material_list = None, title=None, subject_id=None):
         self.page_id = page_id
-        self.prerequisite_id = prerequisite_id
-        self.material_id = material_id
+        self.prerequisite_text = prerequisite_text
+        self.prerequisite_list = set(prerequisite_list) if prerequisite_list is not None else set()
+        self.material_text = material_text
+        self.material_list = set(material_list) if material_list is not None else set()
         self.title = title
         self.subject_id = subject_id
-
-    # Register this instance
+        # Register this instance
         Page._registry.append(self)
+
+
+#    def to_json(self):
+#        """Dumps instance directly to a JSON string."""
+#        return json.dumps(self.to_dict())
+
+    """Converts attributes to a JSON-compatible dictionary."""
+    def to_dict(self):
+        return {
+                key: list(val) if isinstance(val, set) else val
+                for key, val in self.__dict__.items()
+                }       
 
     @classmethod
     def get_all_instances(cls):
@@ -230,26 +244,6 @@ class Prerequisite:
     def __del__(self):
         return
         
-
-
-# Directed Graph Representation
-prerequisites = {
-    "Math 101": set(),                         # No prerequisites
-    "Math 102": {"Math 101"},                  # Requires Math 101
-    "Physics 101": {"Math 101"},               # Requires Math 101
-    "Quantum Mechanics": {"Math 102", "Physics 101"} # Requires both
-}
-
-
-
-
-def get_eligible_lessons(completed_lessons: set[str], course_prereqs: dict[str, set[str]]) -> list[str]:
-    eligible = []
-    for course, reqs in course_prereqs.items():
-        if course not in completed_lessons and reqs.issubset(completed_lessons):
-            eligible.append(course)
-    return eligible
-
 
 
 
@@ -452,4 +446,21 @@ def load_report_from_json(HttpRequest, filename="Report.JSON"):
   except json.JSONDecodeError:
     print(f"Error: Failed to decode JSON from '{filename}'. Check format.")
     return []
+
+
+# Directed Graph Representation
+prerequisites = {
+    "Math 101": set(),                         # No prerequisites
+    "Math 102": {"Math 101"},                  # Requires Math 101
+    "Physics 101": {"Math 101"},               # Requires Math 101
+    "Quantum Mechanics": {"Math 102", "Physics 101"} # Requires both
+}
+
+def get_eligible_lessons(completed_lessons: set[str], course_prereqs: dict[str, set[str]]) -> list[str]:
+    eligible = []
+    for course, reqs in course_prereqs.items():
+        if course not in completed_lessons and reqs.issubset(completed_lessons):
+            eligible.append(course)
+    return eligible
+
 
