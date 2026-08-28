@@ -1,6 +1,7 @@
 
 
 // globals
+  import { statePage } from './state.js';
   import { stateTeacher } from './state.js';
   import { stateStudent } from './state.js';
   import { stateSubject } from './state.js';
@@ -67,6 +68,9 @@ function onTeacherChange() {
  * Event Handler: Student Change
  */
 function onStudentChange() {
+    if (stateSubject.container.selectedIndex >= 0 ) {
+        myDisplay.eligibleBtn.disabled = false;
+    }
     updateLessonState();
 }
 
@@ -74,6 +78,9 @@ function onStudentChange() {
  * Event Handler: Subject Change
  */
 function onSubjectChange() {
+    if (stateStudent.container.disabled == false && stateStudent.container.selectedIndex != -1) {
+        myDisplay.eligibleBtn.disabled = false;
+    }
     updateLessonState();
 }
 
@@ -209,4 +216,39 @@ export function renderSelectOptions(selectElement, items, idKey, labelKey = 'nam
 function clearSelect(selectElement, defaultText = '-- Select --') {
     selectElement.innerHTML = `<option value="">${defaultText}</option>`;
     selectElement.value = '';
+}
+
+
+
+/**
+ * Resets a select element to default placeholder and clears options.
+ */
+export function eligible(student_id = -1, subject_id = -1) {
+
+    const stud_id = student_id;
+    const subj_id = subject_id;
+
+    //  Button Listener for eligible lessons
+    myDisplay.eligibleBtn.addEventListener('click', () => {
+
+      myDisplay.typeName = '';
+      myDisplay.selectedName = '';
+      
+      const allSubjects = stateSubject.getOptions();
+      const allStudents = stateStudent.getOptions();
+      const allPages = statePage.getOptions();
+      const allLessons = stateLesson.getOptions();
+
+      // find eligible classes by student and subject
+      if ((stud_id) && (subj_id)) {
+        myDisplay.typeName = "Curriculum For ";
+      }
+//      let newContent = stateLesson.container.innerHTML.replace( 'Select Lesson', 'Overview')
+//      lessonDisplay.innerHTML = `
+//        <strong>${myDisplay.typeName} ${myDisplay.selectedName}:</strong>
+//        <ul>
+//          ${newContent}
+//        </ul>
+//    ` ;
+    }); // end of event listener on the eligibleLessons button
 }

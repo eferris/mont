@@ -32,6 +32,7 @@
   import { stateMaterial } from './state.js';
   import { statePrerequisite } from './state.js';
   import { myDisplay } from './state.js';
+  import { eligible } from './monthelp.js';
 
   import { renderSelectOptions } from './monthelp.js';
   import { initScreen } from './monthelp.js';
@@ -270,7 +271,9 @@ function renderDashboardScreen(thisAccount) {
                 <option value="">Select a Student...</option>
               </select>
 
-              <button id="load-lessons-btn">Load Lessons</button>
+              <button id="load-lessons-btn">Lesson History</button>
+              <button id="eligible-lessons-btn">Eligible Lessons</button>
+
             </div>
           </div>
 
@@ -383,6 +386,7 @@ async function handleLoginSuccess(user) {
     const subjectSelect = document.getElementById('subject-select');
     const lessonSelect = document.getElementById('lesson-select');
     const loadLessonsBtn = document.getElementById('load-lessons-btn');
+    const eligibleLessonsBtn = document.getElementById('eligible-lessons-btn');
     const lessonDisplay = document.getElementById('lesson-content-display');
     const subjectIndex = subjectSelect.selectedIndex;
     const studentIndex = studentSelect.selectedIndex;
@@ -392,10 +396,19 @@ async function handleLoginSuccess(user) {
     stateStudent.container = studentSelect;
     stateSubject.container = subjectSelect;
     stateLesson.container = lessonSelect;
-    myDisplay.container = lessonDisplay
+    myDisplay.container = lessonDisplay;
+    myDisplay.eligibleBtn = eligibleLessonsBtn;
 
     initScreen();
 
+    //  Button Listener targeting Student selection to update Lesson content
+    eligibleLessonsBtn.addEventListener('click', () => {
+      eligible(stateStudent.container.options[stateStudent.container.selectedIndex].value,
+              stateSubject.container.options[stateSubject.container.selectedIndex].value
+      );
+    });
+
+    eligibleLessonsBtn.disabled = true;
     //  Button Listener targeting Student selection to update Lesson content
     loadLessonsBtn.addEventListener('click', () => {
 

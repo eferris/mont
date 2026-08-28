@@ -5,6 +5,7 @@ export  let myDisplay = {
     container: '',
     typeName: '',
     selectedName: '',
+    eligibleBtn: null,
     oldContent: 'Select a student and or a subject. Click "Load Lessons" to display lesson info.'
 
 }
